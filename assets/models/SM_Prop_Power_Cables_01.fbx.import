@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bye7mbup2ly1v"
-path="res://.godot/imported/SM_Bld_Castle_Tower_01_Lite.fbx-3859ee83118e71dd4aea0b73f5e1f8bc.scn"
+uid="uid://dlo6qjsrv6jfv"
+path="res://.godot/imported/SM_Prop_Power_Cables_01.fbx-56e50266797fd8c3d11680d12d035452.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Tower_01_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Tower_01_Lite.fbx-3859ee83118e71dd4aea0b73f5e1f8bc.scn"]
+source_file="res://assets/models/SM_Prop_Power_Cables_01.fbx"
+dest_files=["res://.godot/imported/SM_Prop_Power_Cables_01.fbx-56e50266797fd8c3d11680d12d035452.scn"]
 
 [params]
 

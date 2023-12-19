@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmc3su1bw6gfw"
-path="res://.godot/imported/SM_Bld_Castle_Tower_04_Lite.fbx-9900f5c19cee6f44e57a4d66d7bc8685.scn"
+uid="uid://c0ihn1xu8lfo"
+path="res://.godot/imported/SM_Prop_Cone_02.fbx-fd85fae5210f3f54219f786850fa679f.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Tower_04_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Tower_04_Lite.fbx-9900f5c19cee6f44e57a4d66d7bc8685.scn"]
+source_file="res://assets/models/SM_Prop_Cone_02.fbx"
+dest_files=["res://.godot/imported/SM_Prop_Cone_02.fbx-fd85fae5210f3f54219f786850fa679f.scn"]
 
 [params]
 
@@ -28,5 +28,12 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"lambert1": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/models/poly_city.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

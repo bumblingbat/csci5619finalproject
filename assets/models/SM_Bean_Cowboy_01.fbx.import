@@ -31,7 +31,7 @@ import_script/path=""
 _subresources={
 "materials": {
 "lambert1": {
-"use_external/enabled": false,
+"use_external/enabled": true,
 "use_external/path": "res://assets/models/polygon_knight.tres"
 }
 }

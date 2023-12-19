@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bok78tfoanvs4"
-path="res://.godot/imported/SM_Bld_Castle_Tower_02_Lite.fbx-6adbb89e479c3fed09faf4f2e4331178.scn"
+uid="uid://c1uon4krf2rqy"
+path="res://.godot/imported/SM_Prop_SecurityCamera_01.fbx-df97941419041523e3667ff86671f67a.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Tower_02_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Tower_02_Lite.fbx-6adbb89e479c3fed09faf4f2e4331178.scn"]
+source_file="res://assets/models/SM_Prop_SecurityCamera_01.fbx"
+dest_files=["res://.godot/imported/SM_Prop_SecurityCamera_01.fbx-df97941419041523e3667ff86671f67a.scn"]
 
 [params]
 

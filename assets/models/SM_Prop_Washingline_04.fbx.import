@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://iddcp01qrtf4"
-path="res://.godot/imported/SM_Bld_Castle_Wall_01_Lite.fbx-8ee19183db6f6f50bcd33e3f6006f9f5.scn"
+uid="uid://cv4fhmxqc2of3"
+path="res://.godot/imported/SM_Prop_Washingline_04.fbx-bc3a0336ad67baec5dbb4c496fcb5eee.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Wall_01_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Wall_01_Lite.fbx-8ee19183db6f6f50bcd33e3f6006f9f5.scn"]
+source_file="res://assets/models/SM_Prop_Washingline_04.fbx"
+dest_files=["res://.godot/imported/SM_Prop_Washingline_04.fbx-bc3a0336ad67baec5dbb4c496fcb5eee.scn"]
 
 [params]
 
@@ -28,5 +28,12 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"lambert1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/copper_wiring.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

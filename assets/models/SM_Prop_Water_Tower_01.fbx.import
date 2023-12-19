@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b26i6b22ysemb"
-path="res://.godot/imported/SM_Bld_Castle_Tower_Round_01_Lite.fbx-342614abac64127f2386e6fe84d1d749.scn"
+uid="uid://cofyo817ns0wq"
+path="res://.godot/imported/SM_Prop_Water_Tower_01.fbx-3d38dfdb5c30910b151e44740fd2ae44.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Tower_Round_01_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Tower_Round_01_Lite.fbx-342614abac64127f2386e6fe84d1d749.scn"]
+source_file="res://assets/models/SM_Prop_Water_Tower_01.fbx"
+dest_files=["res://.godot/imported/SM_Prop_Water_Tower_01.fbx-3d38dfdb5c30910b151e44740fd2ae44.scn"]
 
 [params]
 
@@ -28,5 +28,12 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"blinn25": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/copper_wiring.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cab2w1fdqm4ka"]
+
+[ext_resource type="PackedScene" uid="uid://b8h60kdmdfm3f" path="res://assets/models/SM_Bld_Castle_Door_01.fbx" id="1_3hbpq"]
+
+[node name="SM_Bld_Castle_Door_01" instance=ExtResource("1_3hbpq")]

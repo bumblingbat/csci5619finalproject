@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ol3m1a480jhb"
-path="res://.godot/imported/SM_Bld_Castle_Tower_Top_01_Lite.fbx-80441e1a5fd3c670a8025093807bbbee.scn"
+uid="uid://dpkh7s4sou2qa"
+path="res://.godot/imported/SM_Prop_SidewalkPoles_02.fbx-4fcda31a70cf14049ef71bcb1eb55a9f.scn"
 
 [deps]
 
-source_file="res://assets/models/SM_Bld_Castle_Tower_Top_01_Lite.fbx"
-dest_files=["res://.godot/imported/SM_Bld_Castle_Tower_Top_01_Lite.fbx-80441e1a5fd3c670a8025093807bbbee.scn"]
+source_file="res://assets/models/SM_Prop_SidewalkPoles_02.fbx"
+dest_files=["res://.godot/imported/SM_Prop_SidewalkPoles_02.fbx-4fcda31a70cf14049ef71bcb1eb55a9f.scn"]
 
 [params]
 

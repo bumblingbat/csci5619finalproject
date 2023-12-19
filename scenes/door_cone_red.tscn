@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dditwvhvyhte4"]
+
+[ext_resource type="PackedScene" uid="uid://c0ihn1xu8lfo" path="res://assets/models/SM_Prop_Cone_02.fbx" id="1_3h6uc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytrdo"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.686275)
+
+[node name="SM_Prop_Cone_02" instance=ExtResource("1_3h6uc")]
+
+[node name="SM_Prop_Cone_02" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ytrdo")
