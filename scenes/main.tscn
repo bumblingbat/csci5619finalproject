@@ -1,7 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
-[ext_resource type="Script" path="res://scripts/grabber.gd" id="2_3x1tw"]
 [ext_resource type="PackedScene" uid="uid://dw2kfbg15qqeu" path="res://controllers/controller_l.fbx" id="3_y2kpf"]
 [ext_resource type="PackedScene" uid="uid://doel0ns5nc6bm" path="res://controllers/controller_r.fbx" id="4_5ti0a"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
@@ -12,6 +11,75 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fjijl"]
 size = Vector3(0.5, 1.5, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_jwv3x"]
+script/source = "extends Node3D
+
+var grabbed_object: RigidBody3D = null
+var previous_transform: Transform3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+
+	# Copy the grabber's relative movement since the last frame to to the grabbed object
+	if self.grabbed_object:
+		self.grabbed_object.transform = self.transform * self.previous_transform.inverse() * self.grabbed_object.transform
+	
+	self.previous_transform = self.transform
+
+func _on_button_pressed(button_name: String) -> void:
+	print(\"button pressed: \" + button_name)
+	
+	# Stop if we have not clicked the grip button or we already are grabbing an object
+	if button_name != \"grip_click\" || self.grabbed_object != null:
+		return
+	
+	var grabbables = get_tree().get_nodes_in_group(\"grabbable\")
+	var collision_area = $Area3D as Area3D
+
+	# Iterate through all grabbable objects and check if the collision area overlaps with them
+	for grabbable in grabbables:
+
+		# Cast the grabbable object to a RigidBody3D
+		var grabbable_body = grabbable as RigidBody3D
+
+		# Check to see if the grabber and grabbable collision shapes are intersecting
+		if collision_area.overlaps_body(grabbable_body):
+	
+			# If the object is already grabbed by another grabber, release it first
+			var globals = get_node(\"/root/Globals\")
+			for grabber in globals.active_grabbers:
+				if grabber.grabbed_object == grabbable_body:
+					grabber.grabbed_object = null
+					globals.active_grabbers.remove_at(globals.active_grabbers.find(self))
+					break
+
+			# Freeze the object physics and then grab it
+			grabbable_body.freeze = true
+			self.grabbed_object = grabbable_body
+			globals.active_grabbers.push_back(self)
+	
+func _on_button_released(button_name: String) -> void:
+	print(\"button released: \" + button_name)
+	
+	# Stop if we have not clicked the grip button or we have no current grabbed object
+	if button_name != \"grip_click\" || self.grabbed_object == null:
+		return
+
+	# Release the grabbed object and unfreeze it
+	self.grabbed_object.freeze = false
+	self.grabbed_object.linear_velocity = Vector3(0, -0.1, 0)
+	self.grabbed_object.angular_velocity = Vector3.ZERO
+	self.grabbed_object = null
+
+	# Remove this grabber from the array of active grabbers
+	var globals = get_node(\"/root/Globals\")
+	globals.active_grabbers.remove_at(globals.active_grabbers.find(self))
+"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6vxrx"]
 radius = 0.06
@@ -95,7 +163,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.4, -0.4)
 tracker = &"left_hand"
 pose = &"aim"
-script = ExtResource("2_3x1tw")
+script = SubResource("GDScript_jwv3x")
 
 [node name="LeftControllerMesh" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("3_y2kpf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.05)
@@ -122,7 +190,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.4, -0.4)
 tracker = &"right_hand"
 pose = &"aim"
-script = ExtResource("2_3x1tw")
+script = SubResource("GDScript_jwv3x")
 
 [node name="Area3D" type="Area3D" parent="XRUser/XROrigin3D/RightController"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.00679812, 0, 0.075)
@@ -205,28 +273,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
 shape = SubResource("BoxShape3D_xitp7")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Gate" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 16)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+[node name="Door" type="RigidBody3D" parent="Gate"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate/Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 shape = SubResource("BoxShape3D_vd7kv")
 
-[node name="SM_Bld_Castle_Iron_Gate_01" parent="Node3D/StaticBody3D" instance=ExtResource("6_su8nq")]
+[node name="SM_Bld_Castle_Iron_Gate_01" parent="Gate/Door" instance=ExtResource("6_su8nq")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 
-[node name="SM_Bld_Castle_Pillar_01" parent="Node3D" instance=ExtResource("7_guoei")]
+[node name="SM_Bld_Castle_Pillar_01" parent="Gate" instance=ExtResource("7_guoei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -4.75, 0)
 
-[node name="SM_Bld_Castle_Pillar_02" parent="Node3D" instance=ExtResource("7_guoei")]
+[node name="SM_Bld_Castle_Pillar_02" parent="Gate" instance=ExtResource("7_guoei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -4.75, 0)
 
-[node name="SM_Prop_Brazier_01" parent="Node3D" instance=ExtResource("8_o0shl")]
+[node name="SM_Prop_Brazier_01" parent="Gate" instance=ExtResource("8_o0shl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.95, 0)
 
-[node name="SM_Prop_Brazier_02" parent="Node3D" instance=ExtResource("8_o0shl")]
+[node name="SM_Prop_Brazier_02" parent="Gate" instance=ExtResource("8_o0shl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.95, 0)
 
 [node name="Moat" type="Node3D" parent="."]
