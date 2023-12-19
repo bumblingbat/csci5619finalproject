@@ -1,0 +1,583 @@
+[gd_scene load_steps=30 format=3 uid="uid://d46wrkgdeynk"]
+
+[ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
+[ext_resource type="Script" path="res://scripts/grabber.gd" id="2_3x1tw"]
+[ext_resource type="PackedScene" uid="uid://dw2kfbg15qqeu" path="res://controllers/controller_l.fbx" id="3_y2kpf"]
+[ext_resource type="PackedScene" uid="uid://doel0ns5nc6bm" path="res://controllers/controller_r.fbx" id="4_5ti0a"]
+[ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
+[ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
+[ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
+[ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
+[ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fjijl"]
+size = Vector3(0.5, 1.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6vxrx"]
+radius = 0.06
+
+[sub_resource type="BoxMesh" id="BoxMesh_x3n52"]
+size = Vector3(0.25, 0.3, 0.005)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_noqmy"]
+sky_material = SubResource("ProceduralSkyMaterial_osj4q")
+
+[sub_resource type="Environment" id="Environment_pi0m0"]
+background_mode = 2
+sky = SubResource("Sky_noqmy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a8whk"]
+size = Vector2(48, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym5vi"]
+albedo_color = Color(0.419608, 0.407843, 0.376471, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ke6u2"]
+size = Vector2(48, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3j0oa"]
+albedo_color = Color(0.419608, 0.407843, 0.376471, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trsr2"]
+size = Vector3(48, 1, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t32ny"]
+size = Vector3(48, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xitp7"]
+size = Vector3(23, 1.8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vd7kv"]
+size = Vector3(3, 3, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdkra"]
+transparency = 1
+albedo_color = Color(0.0588235, 0.368627, 0.6, 0.839216)
+
+[sub_resource type="BoxMesh" id="BoxMesh_didrd"]
+material = SubResource("StandardMaterial3D_pdkra")
+size = Vector3(48, 2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dqy35"]
+size = Vector3(48, 2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmabx"]
+size = Vector3(3, 2, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fm283"]
+size = Vector3(3, 2, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0jwo7"]
+size = Vector3(3, 0.25, 5)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_xecma")
+
+[node name="XRUser" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_fjijl")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="XRUser"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XRUser/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="LeftController" type="XRController3D" parent="XRUser/XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.4, -0.4)
+tracker = &"left_hand"
+pose = &"aim"
+script = ExtResource("2_3x1tw")
+
+[node name="LeftControllerMesh" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("3_y2kpf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.05)
+
+[node name="Area3D" type="Area3D" parent="XRUser/XROrigin3D/LeftController"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.007, 0, 0.075)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/LeftController/Area3D"]
+shape = SubResource("SphereShape3D_6vxrx")
+
+[node name="Book" type="Node3D" parent="XRUser/XROrigin3D/LeftController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184764, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0)
+mesh = SubResource("BoxMesh_x3n52")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0)
+mesh = SubResource("BoxMesh_x3n52")
+
+[node name="RightController" type="XRController3D" parent="XRUser/XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.4, -0.4)
+tracker = &"right_hand"
+pose = &"aim"
+script = ExtResource("2_3x1tw")
+
+[node name="Area3D" type="Area3D" parent="XRUser/XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.00679812, 0, 0.075)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/RightController/Area3D"]
+shape = SubResource("SphereShape3D_6vxrx")
+
+[node name="RightControllerMesh" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("4_5ti0a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.05)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pi0m0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33.2508)
+
+[node name="secondpartmesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+mesh = SubResource("PlaneMesh_a8whk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ym5vi")
+
+[node name="firstpartmesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37)
+mesh = SubResource("PlaneMesh_ke6u2")
+surface_material_override/0 = SubResource("StandardMaterial3D_3j0oa")
+
+[node name="secondpart" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 18)
+shape = SubResource("BoxShape3D_trsr2")
+
+[node name="firstpart" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -37)
+shape = SubResource("BoxShape3D_t32ny")
+
+[node name="Fence" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -0.1, 16)
+
+[node name="SM_Env_Hedge_01" parent="Fence" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="SM_Env_Hedge_02" parent="Fence" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="SM_Env_Hedge_03" parent="Fence" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="SM_Env_Hedge_04" parent="Fence" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="SM_Env_Hedge_05" parent="Fence" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
+shape = SubResource("BoxShape3D_xitp7")
+
+[node name="Fence2" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.5, -0.1, 16)
+
+[node name="SM_Env_Hedge_01" parent="Fence2" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="SM_Env_Hedge_02" parent="Fence2" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="SM_Env_Hedge_03" parent="Fence2" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="SM_Env_Hedge_04" parent="Fence2" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="SM_Env_Hedge_05" parent="Fence2" instance=ExtResource("5_g7edt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fence2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
+shape = SubResource("BoxShape3D_xitp7")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 16)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+shape = SubResource("BoxShape3D_vd7kv")
+
+[node name="SM_Bld_Castle_Iron_Gate_01" parent="Node3D/StaticBody3D" instance=ExtResource("6_su8nq")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="SM_Bld_Castle_Pillar_01" parent="Node3D" instance=ExtResource("7_guoei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -4.75, 0)
+
+[node name="SM_Bld_Castle_Pillar_02" parent="Node3D" instance=ExtResource("7_guoei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -4.75, 0)
+
+[node name="SM_Prop_Brazier_01" parent="Node3D" instance=ExtResource("8_o0shl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.95, 0)
+
+[node name="SM_Prop_Brazier_02" parent="Node3D" instance=ExtResource("8_o0shl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.95, 0)
+
+[node name="Moat" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
+mesh = SubResource("BoxMesh_didrd")
+
+[node name="Area3D" type="Area3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Moat/Area3D"]
+shape = SubResource("BoxShape3D_dqy35")
+
+[node name="Moat Segment" type="StaticBody3D" parent="Moat"]
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment2" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment2" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment2" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment3" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment3" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment3" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment4" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment4" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment4" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment5" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment5" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment5" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment6" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment6" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment6" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment7" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment7" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment7" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment8" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment8" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment8" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment9" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment9" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment9" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment10" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment10" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment10" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment11" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment11" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment11" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment12" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment12" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment12" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment13" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment13" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment13" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment14" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment14" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment14" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment15" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment15" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment15" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="Moat Segment16" type="StaticBody3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
+
+[node name="SM_Env_Canal_01" parent="Moat/Moat Segment16" instance=ExtResource("9_qefog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 0, -1.75)
+
+[node name="SM_Env_Canal_02" parent="Moat/Moat Segment16" instance=ExtResource("9_qefog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
+
+[node name="Wall 1" type="CollisionShape3D" parent="Moat/Moat Segment16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, -1.75)
+shape = SubResource("BoxShape3D_lmabx")
+
+[node name="Wall 2" type="CollisionShape3D" parent="Moat/Moat Segment16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 3.25)
+shape = SubResource("BoxShape3D_fm283")
+
+[node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
+shape = SubResource("BoxShape3D_0jwo7")
+
+[connection signal="button_pressed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController" method="_on_button_pressed"]
+[connection signal="button_released" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController" method="_on_button_released"]
+[connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController" method="_on_button_pressed"]
+[connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController" method="_on_button_released"]
