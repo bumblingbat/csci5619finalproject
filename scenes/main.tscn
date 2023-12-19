@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=57 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/user.gd" id="2_jktpg"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
 [ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
-[ext_resource type="Script" path="res://scripts/moat.gd" id="9_w0wyo"]
+[ext_resource type="Script" path="res://Area3D.gd" id="9_x1pj1"]
 [ext_resource type="PackedScene" uid="uid://bwd4w8xy3fmdt" path="res://assets/models/SM_Bean_Cowboy_01.fbx" id="11_7bugu"]
 [ext_resource type="Script" path="res://scripts/patrolling.gd" id="12_u81po"]
 [ext_resource type="PackedScene" uid="uid://bdq73ug14r13p" path="res://assets/models/SM_Bld_Castle_Wall_Gate_01.fbx" id="13_mgw7g"]
@@ -23,6 +23,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fjijl"]
 size = Vector3(0.5, 1.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u76db"]
+size = Vector3(0.2, 0.2, 0.12)
 
 [sub_resource type="GDScript" id="GDScript_jwv3x"]
 script/source = "extends Node3D
@@ -292,6 +295,12 @@ shape = SubResource("BoxShape3D_fjijl")
 [node name="XRCamera3D" type="XRCamera3D" parent="XRUser/XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
+[node name="HeadArea3D" type="Area3D" parent="XRUser/XROrigin3D/XRCamera3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/XRCamera3D/HeadArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.06)
+shape = SubResource("BoxShape3D_u76db")
+
 [node name="LeftController" type="XRController3D" parent="XRUser/XROrigin3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.4, -0.4)
@@ -445,7 +454,7 @@ shape = SubResource("BoxShape3D_634nx")
 
 [node name="Moat" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-script = ExtResource("9_w0wyo")
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
@@ -453,6 +462,7 @@ mesh = SubResource("BoxMesh_didrd")
 
 [node name="Area3D" type="Area3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
+script = ExtResource("9_x1pj1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Moat/Area3D"]
 shape = SubResource("BoxShape3D_dqy35")
@@ -959,7 +969,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 0)
 [node name="SM_Bld_Castle_Tower_Wall_Top_01" parent="Castle Wall/Castle Section10" instance=ExtResource("14_m3pjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
+[connection signal="area_entered" from="XRUser/XROrigin3D/XRCamera3D/HeadArea3D" to="XRUser" method="_on_head_area_3d_area_entered"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController" method="_on_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController" method="_on_button_released"]
+[connection signal="area_entered" from="XRUser/XROrigin3D/LeftController/Area3D" to="XRUser" method="_on_left_controller_area_3d_area_entered"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController" method="_on_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController" method="_on_button_released"]
+[connection signal="area_entered" from="XRUser/XROrigin3D/RightController/Area3D" to="XRUser" method="_on_right_controller_area_3d_area_entered"]
+[connection signal="reset" from="Moat/Area3D" to="XRUser" method="_on_area_3d_reset"]
