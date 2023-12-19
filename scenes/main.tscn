@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=32 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
+[ext_resource type="Script" path="res://scripts/user.gd" id="2_jktpg"]
 [ext_resource type="PackedScene" uid="uid://dw2kfbg15qqeu" path="res://controllers/controller_l.fbx" id="3_y2kpf"]
 [ext_resource type="PackedScene" uid="uid://doel0ns5nc6bm" path="res://controllers/controller_r.fbx" id="4_5ti0a"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
 [ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
+[ext_resource type="Script" path="res://scripts/moat.gd" id="9_w0wyo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fjijl"]
 size = Vector3(0.5, 1.5, 0.5)
@@ -148,6 +150,7 @@ size = Vector3(3, 0.25, 5)
 script = ExtResource("1_xecma")
 
 [node name="XRUser" type="RigidBody3D" parent="."]
+script = ExtResource("2_jktpg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -299,6 +302,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.95, 0)
 
 [node name="Moat" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("9_w0wyo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
