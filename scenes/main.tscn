@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=70 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/locomotion.gd" id="2_va3ac"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
 [ext_resource type="Script" path="res://scripts/Area3D.gd" id="9_6oy3r"]
 [ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
+[ext_resource type="Texture2D" uid="uid://cvskvnjelv5dr" path="res://assets/noswimsign.jpg" id="9_wvo3k"]
 [ext_resource type="PackedScene" uid="uid://bwd4w8xy3fmdt" path="res://assets/models/SM_Bean_Cowboy_01.fbx" id="11_7bugu"]
 [ext_resource type="Script" path="res://scripts/patrolling.gd" id="12_u81po"]
 [ext_resource type="PackedScene" uid="uid://bdq73ug14r13p" path="res://assets/models/SM_Bld_Castle_Wall_Gate_01.fbx" id="13_mgw7g"]
@@ -183,14 +184,24 @@ size = Vector3(3, 2, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0jwo7"]
 size = Vector3(3, 0.25, 5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_vdme4"]
-size = Vector3(1, 1, 0.05)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iaouq"]
+albedo_texture = ExtResource("9_wvo3k")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hvr2k"]
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfw7b"]
+albedo_color = Color(0.454902, 0.266667, 0.101961, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vyaan"]
+material = SubResource("StandardMaterial3D_sfw7b")
 size = Vector3(0.15, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xitp7"]
 size = Vector3(23, 1.8, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_amevm"]
+size = Vector3(1, 1, 0.05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vd7kv"]
 size = Vector3(3, 3, 0.25)
@@ -769,11 +780,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
 shape = SubResource("BoxShape3D_0jwo7")
 
 [node name="sign" type="MeshInstance3D" parent="Moat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -2)
-mesh = SubResource("BoxMesh_vdme4")
+transform = Transform3D(-1, 0, 8.9407e-08, -8.9407e-08, -4.37114e-08, -1, 3.9081e-15, -1, 4.37114e-08, 5, 1, -2)
+material_override = SubResource("StandardMaterial3D_iaouq")
+mesh = SubResource("PlaneMesh_hvr2k")
 
 [node name="signpost" type="MeshInstance3D" parent="Moat/sign"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
+transform = Transform3D(1, 8.9407e-08, -8.9407e-08, -8.9407e-08, -4.37114e-08, -1, -8.9407e-08, 1, -4.37114e-08, 0, -0.1, 0.5)
 mesh = SubResource("BoxMesh_vyaan")
 skeleton = NodePath("../..")
 
@@ -801,15 +813,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
 shape = SubResource("BoxShape3D_xitp7")
 
-[node name="sign" type="MeshInstance3D" parent="Hedge Gate/Fence"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 2.5, 0)
-mesh = SubResource("BoxMesh_vdme4")
-
-[node name="signpost" type="MeshInstance3D" parent="Hedge Gate/Fence/sign"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
-mesh = SubResource("BoxMesh_vyaan")
-skeleton = NodePath("../..")
-
 [node name="Fence2" type="StaticBody3D" parent="Hedge Gate"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.5, -0.1, 16)
 
@@ -831,6 +834,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hedge Gate/Fence2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
 shape = SubResource("BoxShape3D_xitp7")
+
+[node name="sign" type="MeshInstance3D" parent="Hedge Gate/Fence2"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.5, 2.5, -9.53674e-07)
+mesh = SubResource("BoxMesh_amevm")
+skeleton = NodePath("../../Fence")
+
+[node name="signpost" type="MeshInstance3D" parent="Hedge Gate/Fence2/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
+mesh = SubResource("BoxMesh_vyaan")
+skeleton = NodePath("../../../Fence")
 
 [node name="Gate" type="Node3D" parent="Hedge Gate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 16)
