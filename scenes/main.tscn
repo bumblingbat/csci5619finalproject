@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=69 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/locomotion.gd" id="2_va3ac"]
@@ -199,9 +199,6 @@ size = Vector3(0.15, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xitp7"]
 size = Vector3(23, 1.8, 0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_amevm"]
-size = Vector3(1, 1, 0.05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vd7kv"]
 size = Vector3(3, 3, 0.25)
@@ -834,16 +831,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hedge Gate/Fence2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
 shape = SubResource("BoxShape3D_xitp7")
-
-[node name="sign" type="MeshInstance3D" parent="Hedge Gate/Fence2"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.5, 2.5, -9.53674e-07)
-mesh = SubResource("BoxMesh_amevm")
-skeleton = NodePath("../../Fence")
-
-[node name="signpost" type="MeshInstance3D" parent="Hedge Gate/Fence2/sign"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
-mesh = SubResource("BoxMesh_vyaan")
-skeleton = NodePath("../../../Fence")
 
 [node name="Gate" type="Node3D" parent="Hedge Gate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 16)
