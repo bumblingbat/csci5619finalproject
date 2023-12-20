@@ -35,8 +35,8 @@ func _ready():
 func _process(delta):
 	
   # Reset X and Z rotation because godot physics are cool!
-  self.rotation.x = 0.0
-  self.rotation.z = 0.0
+	self.rotation.x = 0.0
+	self.rotation.z = 0.0
 
 	# Snap turn cooldown update
 	if self.snap_turn_counter != 0.0:
@@ -181,7 +181,7 @@ func _label_swap(from_area: Area3D, to_area: Area3D) -> void:
 
 func reset_position():
 	self.position.x = 0.0
-  self.position.y = 0.0
+	self.position.y = 0.0
 	self.position.z = 0.0
 	self.rotation.y = 0.0
 

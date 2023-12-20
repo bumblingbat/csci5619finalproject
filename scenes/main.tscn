@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=59 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/user.gd" id="2_jktpg"]
@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
+[ext_resource type="Script" path="res://scripts/Area3D.gd" id="9_6oy3r"]
 [ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
-[ext_resource type="Script" path="res://Area3D.gd" id="9_x1pj1"]
 [ext_resource type="PackedScene" uid="uid://bwd4w8xy3fmdt" path="res://assets/models/SM_Bean_Cowboy_01.fbx" id="11_7bugu"]
 [ext_resource type="Script" path="res://scripts/patrolling.gd" id="12_u81po"]
 [ext_resource type="PackedScene" uid="uid://bdq73ug14r13p" path="res://assets/models/SM_Bld_Castle_Wall_Gate_01.fbx" id="13_mgw7g"]
@@ -141,6 +141,12 @@ size = Vector3(48, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xitp7"]
 size = Vector3(23, 1.8, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vdme4"]
+size = Vector3(1, 1, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vyaan"]
+size = Vector3(0.15, 1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vd7kv"]
 size = Vector3(3, 3, 0.25)
@@ -394,6 +400,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.9, 0)
 shape = SubResource("BoxShape3D_xitp7")
 
+[node name="sign" type="MeshInstance3D" parent="Fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 2.5, 0)
+mesh = SubResource("BoxMesh_vdme4")
+
+[node name="signpost" type="MeshInstance3D" parent="Fence/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
+mesh = SubResource("BoxMesh_vyaan")
+skeleton = NodePath("../..")
+
 [node name="Fence2" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.5, -0.1, 16)
 
@@ -454,7 +469,6 @@ shape = SubResource("BoxShape3D_634nx")
 
 [node name="Moat" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
@@ -462,7 +476,7 @@ mesh = SubResource("BoxMesh_didrd")
 
 [node name="Area3D" type="Area3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
-script = ExtResource("9_x1pj1")
+script = ExtResource("9_6oy3r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Moat/Area3D"]
 shape = SubResource("BoxShape3D_dqy35")
@@ -801,6 +815,15 @@ shape = SubResource("BoxShape3D_fm283")
 [node name="Floor" type="CollisionShape3D" parent="Moat/Moat Segment16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -2, 0.75)
 shape = SubResource("BoxShape3D_0jwo7")
+
+[node name="sign" type="MeshInstance3D" parent="Moat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -2)
+mesh = SubResource("BoxMesh_vdme4")
+
+[node name="signpost" type="MeshInstance3D" parent="Moat/sign"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.1)
+mesh = SubResource("BoxMesh_vyaan")
+skeleton = NodePath("../..")
 
 [node name="Bean3D Like Never Seen Before" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
