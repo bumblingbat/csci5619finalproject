@@ -1,10 +1,12 @@
-[gd_scene load_steps=59 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=66 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/user.gd" id="2_jktpg"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_8jieb"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_7ckx0"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="4_yupt0"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="6_j2j1f"]
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
@@ -102,11 +104,33 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_6vxrx"]
 radius = 0.06
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_m0ytk"]
+viewport_path = NodePath("XRUser/XROrigin3D/LeftController/Book/rightpage/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5coqg"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_m0ytk")
+
 [sub_resource type="BoxMesh" id="BoxMesh_x3n52"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5coqg")
+size = Vector3(0.25, 0.3, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eq0sy"]
+resource_local_to_scene = true
 size = Vector3(0.25, 0.3, 0.005)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l0j7"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6n55c"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.207843, 0.290196, 1, 0.780392)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mffb1"]
+material = SubResource("StandardMaterial3D_6n55c")
+size = Vector3(0.001, 0.001, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -290,6 +314,7 @@ radius = 0.33
 script = ExtResource("1_xecma")
 
 [node name="XRUser" type="RigidBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_jktpg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser"]
@@ -326,13 +351,24 @@ shape = SubResource("SphereShape3D_6vxrx")
 [node name="Book" type="Node3D" parent="XRUser/XROrigin3D/LeftController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184764, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+[node name="rightpage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0)
 mesh = SubResource("BoxMesh_x3n52")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+[node name="SubViewport" type="SubViewport" parent="XRUser/XROrigin3D/LeftController/Book/rightpage"]
+script = ExtResource("4_yupt0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/rightpage/SubViewport"]
+
+[node name="Button" type="Button" parent="XRUser/XROrigin3D/LeftController/Book/rightpage/SubViewport/CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "hello world!
+"
+
+[node name="leftpage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0)
-mesh = SubResource("BoxMesh_x3n52")
+mesh = SubResource("BoxMesh_eq0sy")
 
 [node name="RightController" type="XRController3D" parent="XRUser/XROrigin3D"]
 unique_name_in_owner = true
@@ -349,6 +385,10 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/RightController/Area3D"]
 shape = SubResource("SphereShape3D_6vxrx")
+
+[node name="laser" type="MeshInstance3D" parent="XRUser/XROrigin3D/RightController"]
+mesh = SubResource("BoxMesh_mffb1")
+script = ExtResource("6_j2j1f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")

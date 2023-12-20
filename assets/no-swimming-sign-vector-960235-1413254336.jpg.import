@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0c88iaird1a"
 path.s3tc="res://.godot/imported/no-swimming-sign-vector-960235-1413254336.jpg-f186c0b4d56af3d04fe123900a532823.s3tc.ctex"
+path.etc2="res://.godot/imported/no-swimming-sign-vector-960235-1413254336.jpg-f186c0b4d56af3d04fe123900a532823.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/no-swimming-sign-vector-960235-1413254336.jpg"
-dest_files=["res://.godot/imported/no-swimming-sign-vector-960235-1413254336.jpg-f186c0b4d56af3d04fe123900a532823.s3tc.ctex"]
+dest_files=["res://.godot/imported/no-swimming-sign-vector-960235-1413254336.jpg-f186c0b4d56af3d04fe123900a532823.s3tc.ctex", "res://.godot/imported/no-swimming-sign-vector-960235-1413254336.jpg-f186c0b4d56af3d04fe123900a532823.etc2.ctex"]
 
 [params]
 

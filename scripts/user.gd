@@ -34,7 +34,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-  # Reset X and Z rotation because godot physics are cool!
+	# Reset X and Z rotation because godot physics are cool!
 	self.rotation.x = 0.0
 	self.rotation.z = 0.0
 
@@ -183,14 +183,12 @@ func reset_position():
 	self.position.x = 0.0
 	self.position.y = 0.0
 	self.position.z = 0.0
-	self.rotation.y = 0.0
+	self.rotation.y = PI 
 
-func _on_user_reset():
-	self.reset_position()
+func _on_head_area_3d_area_entered(area):
+	if area.name == "LeftHandArea3D" or area.name == "RightHandArea3D":
+		_label_swap($HeadArea3D, area)
 
-func _on_button_pressed(name):
-	if name == "ax_button" or "by_button":
-		snap_turning = not snap_turning
 
 func _on_left_controller_area_3d_area_entered(area):
 	if area.name == "HeadArea3D" or area.name == "RightHandArea3D":
@@ -200,15 +198,9 @@ func _on_right_controller_area_3d_area_entered(area):
 	if area.name == "LeftHandArea3D" or area.name == "HeadArea3D":
 		_label_swap($RightHandArea3D, area)
 
-func _on_head_area_3d_area_entered(area):
-	if area.name == "LeftHandArea3D" or area.name == "RightHandArea3D":
-		_label_swap($HeadArea3D, area)
-
-func _on_left_controller_button_pressed(name):
-	_on_button_pressed(name)
-
-func _on_right_controller_button_pressed(name):
-	_on_button_pressed(name)
-
-func _on_area_3d_reset():
+func _on_user_reset():
 	self.reset_position()
+
+func _on_button_pressed(name):
+	if name == "ax_button" or "by_button":
+		snap_turning = not snap_turning

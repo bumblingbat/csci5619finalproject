@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cr6hn1jlaig0b"
 path.s3tc="res://.godot/imported/PolygonCity_Texture.png-77ea32981928e55679789f82e058a7b7.s3tc.ctex"
+path.etc2="res://.godot/imported/PolygonCity_Texture.png-77ea32981928e55679789f82e058a7b7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/PolygonCity_Texture.png"
-dest_files=["res://.godot/imported/PolygonCity_Texture.png-77ea32981928e55679789f82e058a7b7.s3tc.ctex"]
+dest_files=["res://.godot/imported/PolygonCity_Texture.png-77ea32981928e55679789f82e058a7b7.s3tc.ctex", "res://.godot/imported/PolygonCity_Texture.png-77ea32981928e55679789f82e058a7b7.etc2.ctex"]
 
 [params]
 
