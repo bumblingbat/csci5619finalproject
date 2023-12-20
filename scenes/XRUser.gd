@@ -1,5 +1,5 @@
-extends Node3D
-#extends RigidBody3D
+#extends Node3D
+extends RigidBody3D
 
 @export var max_speed:= 2.5
 @export var dead_zone := 0.2
@@ -71,7 +71,6 @@ func reset(_body):
 	
 func process_input(input_name: String, input_value: Vector2):
 	if input_name == "primary":
-		self.position.y += 1
 		input_vector = input_value
 
 
