@@ -107,25 +107,31 @@ func _process(delta):
 	elif steering == "left":
 		if self.input_vector.y > self.dead_zone or self.input_vector.y < -self.dead_zone:
 			# get movement direction
-			var movement_direction = Vector3(cos($LeftController.global_rotation.y + (PI/2)), 0, -sin($LeftController.global_rotation.y + (PI/2))) #I realize now that I could've just changed $XRCamera3D to $LeftController, but oh well
+			#var movement_direction = Vector3(cos($LeftController.global_rotation.y + (PI/2)), 0, -sin($LeftController.global_rotation.y + (PI/2))) #I realize now that I could've just changed $XRCamera3D to $LeftController, but oh well
+			
+			var movement_vector = Vector3(0, 0, max_speed * -self.input_vector.y * delta)
+			self.position += movement_vector.rotated(Vector3.UP, %LeftController.global_rotation.y)
 			
 			# apply magnitude to the direction
-			var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
+			#var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
 			
 			# apply to position
-			self.position += movement_vector
+			#self.position += movement_vector
 
 	# Hand Directed Steering (right)
 	else:
 		if self.input_vector.y > self.dead_zone or self.input_vector.y < -self.dead_zone:
 			# get movement direction
-			var movement_direction = Vector3(cos($RightController.global_rotation.y + (PI/2)), 0, -sin($RightController.global_rotation.y + (PI/2)))
+			#var movement_direction = Vector3(cos($RightController.global_rotation.y + (PI/2)), 0, -sin($RightController.global_rotation.y + (PI/2)))
+			
+			var movement_vector = Vector3(0, 0, max_speed * -self.input_vector.y * delta)
+			self.position += movement_vector.rotated(Vector3.UP, %RightController.global_rotation.y)
 			
 			# apply magnitude to the direction
-			var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
+			#var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
 			
 			# apply to position
-			self.position += movement_vector
+			#self.position += movement_vector
 
 
 	# Snap turn
@@ -156,8 +162,8 @@ func _process(delta):
 
 func process_input(input_name: String, input_value: Vector2):
 	if input_name == "primary":
+		self.position.y += 1
 		input_vector = input_value
-
 
 func _label_swap(from_area: Area3D, to_area: Area3D) -> void:
 	print("Area: " + from_area.name + " collided with Area: " + to_area.name)
@@ -188,8 +194,7 @@ func reset_position():
 func _on_head_area_3d_area_entered(area):
 	if area.name == "LeftHandArea3D" or area.name == "RightHandArea3D":
 		_label_swap($HeadArea3D, area)
-
-
+		
 func _on_left_controller_area_3d_area_entered(area):
 	if area.name == "HeadArea3D" or area.name == "RightHandArea3D":
 		_label_swap($LeftHandArea3D, area)
