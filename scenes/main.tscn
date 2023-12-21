@@ -75,6 +75,7 @@ viewport_path = NodePath("XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPag
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwi8p"]
 resource_local_to_scene = true
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_pgwth")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qw1tg"]
@@ -451,6 +452,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0, 0)
 
 [node name="RightPage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide"]
 material_override = SubResource("StandardMaterial3D_quspu")
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_5w8ic")
 skeleton = NodePath("../..")
 
