@@ -1,16 +1,21 @@
-[gd_scene load_steps=73 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=80 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_8jieb"]
+[ext_resource type="Texture2D" uid="uid://v4ynlcy5ht12" path="res://assets/Spells/Fireball.png" id="4_1mxq8"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_7ckx0"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_p8kn8"]
+[ext_resource type="Script" path="res://scenes/Spells.gd" id="4_rq42a"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7y1nr"]
 [ext_resource type="Texture2D" uid="uid://d0udcon26715i" path="res://assets/leather.jpg" id="5_60ox5"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
 [ext_resource type="Texture2D" uid="uid://lfrdf02j5eec" path="res://assets/Hex_Grid.jpg" id="5_htbn6"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_l67yh"]
+[ext_resource type="Texture2D" uid="uid://b35h72g7qukq8" path="res://assets/Spells/Ice Bridge.png" id="5_oglss"]
+[ext_resource type="Texture2D" uid="uid://b5bah1fx4atod" path="res://assets/Spells/Lightning.png" id="6_nusix"]
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
+[ext_resource type="Texture2D" uid="uid://ddyqvndfh7mo3" path="res://assets/Spells/Time Stop.png" id="7_gexv2"]
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
 [ext_resource type="Script" path="res://scripts/Area3D.gd" id="9_6oy3r"]
@@ -40,6 +45,13 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x1bdb"]
 size = Vector3(0.36, 0.01, 0.24)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pgwth"]
+viewport_path = NodePath("XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwi8p"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_pgwth")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qw1tg"]
 size = Vector2(0.18, 0.24)
@@ -304,8 +316,31 @@ shape = SubResource("BoxShape3D_x1bdb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0, 0)
 
 [node name="LeftPage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide"]
+material_override = SubResource("StandardMaterial3D_kwi8p")
 mesh = SubResource("PlaneMesh_qw1tg")
 skeleton = NodePath("../..")
+
+[node name="SpellListViewport" type="SubViewport" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage"]
+size = Vector2i(900, 1200)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport"]
+script = ExtResource("4_rq42a")
+
+[node name="Fireball" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+texture = ExtResource("4_1mxq8")
+centered = false
+
+[node name="Ice Bridge" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+texture = ExtResource("5_oglss")
+centered = false
+
+[node name="Lightning" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+texture = ExtResource("6_nusix")
+centered = false
+
+[node name="Time Stop" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+texture = ExtResource("7_gexv2")
+centered = false
 
 [node name="LeftCover" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, -0.005, 0)
@@ -987,6 +1022,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 0)
 [node name="SM_Bld_Castle_Tower_Wall_Top_01" parent="Castle Wall/Castle Section10" instance=ExtResource("14_m3pjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
+[connection signal="input_vector2_changed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer" method="_on_change_spell"]
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/RightController" to="XRUser" method="process_input"]
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
