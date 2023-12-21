@@ -1196,7 +1196,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
 [connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
 [connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
 [connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
-=======
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
 [connection signal="the_beacons_are_lit" from="Hedge Gate/Gate/brazier1/FlameMesh" to="Hedge Gate/Gate/Door/SM_Bld_Castle_Iron_Gate_01" method="_on_the_beacons_are_lit"]
