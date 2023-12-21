@@ -4,7 +4,11 @@ var casting_spell := "fizzle"
 var saved_target
 
 signal ignite
+signal ice_bridge
+signal ice_block
+signal electric
 signal time_change
+signal drawing_coords
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +32,20 @@ func _process(delta):
 		var collision_distance = result["position"].distance_to(start_point)
 		self.scale.z = collision_distance
 		self.position.z = -collision_distance / 2
+		if result["collider_id"] == $"../../LeftController/Book/RightSide/RightPageArea".get_instance_id():
+			var page_shape = $"../../LeftController/Book/RightSide/RightPageArea/CollisionShape3D"
+			var box = page_shape.shape as BoxShape3D
+			
+			var local_collision = $"../../LeftController/Book/RightSide/RightPageArea".global_transform.inverse() * result["position"]
+			var normalized_coords = Vector2(local_collision.x / box.size.x + 0.5, local_collision.z / box.size.z + 0.5)
+			
+			var viewport = $"../../LeftController/Book/RightSide/RightPage/RightPageViewport" as SubViewport
+			var viewport_coords = Vector2(viewport.size.x * normalized_coords.x, viewport.size.y * normalized_coords.y)
+			
+			var event = InputEventMouseMotion.new()
+			event.position = viewport_coords
+			event.global_position = viewport_coords
+			viewport.push_input(event)
 		
 	else:
 		self.scale.z = 100
@@ -58,8 +76,13 @@ func _on_casting_time_stop():
 func _on_right_controller_button_pressed(name):
 	if name != "trigger_click":
 		return
+	
 	if casting_spell == "fizzle":
 		return
+	
+	elif casting_spell == "time stop":
+		time_change.emit()
+		self.fizzle()
 	
 	var start_point = get_parent().global_position
 	var end_point = get_parent().global_transform * Vector3(0, 0, -100)
@@ -79,14 +102,17 @@ func _on_right_controller_button_pressed(name):
 	
 	elif casting_spell == "ice":
 		if result["collider"] is StaticBody3D:
-			print("targeted ground")
+			if saved_target == null:
+				saved_target = result["position"]
+				ice_block.emit(saved_target - Vector3(0, 0.08, 0))
+			else:
+				ice_bridge.emit(saved_target - Vector3(0, 0.08, 0), result["position"] - Vector3(0, 0.08, 0))
+				self.fizzle()
 	
 	elif casting_spell == "lightning":
-		if result["collider"] is StaticBody3D:
-			print("targeted ground")
-	
-	elif casting_spell == "time stop":
-		time_change.emit()
+		if result["collider"] == $"../../../../Castle Wall/Castle Gate/SM_Prop_Water_Tower_01/Area3D":
+			electric.emit()
 		self.fizzle()
+	
 	else:
 		return

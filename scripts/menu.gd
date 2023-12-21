@@ -130,6 +130,7 @@ func _process(_delta):
 		return
 	# Update mouse position
 	mouse_position = get_mouse_position()
+	print(mouse_position)
 	# Exit if no movement
 	if last_position == mouse_position:
 		return
@@ -138,11 +139,11 @@ func _process(_delta):
 		last_position.y = mouse_position.y
 		#TODO update the appearance of the cursor line
 	# For each node:
-	for i in node_positions.length:
+	for i in len(node_positions):
 		# Check for new node snap
 		if (mouse_position.distance_to(node_positions[i]) < snap_radius) and (i != current_node_index):
 			# Erase last line if backtracking
-			if i == node_history[0]:
+			if (not node_history.is_empty()) and (i == node_history[0]):
 				current_pattern = mask_list[get_line_index(i, node_history[0])] ^ current_pattern
 				current_node_index = node_history.pop_front()
 				#TODO erase last line and update the cursor line to be originating from node with index i
@@ -153,6 +154,7 @@ func _process(_delta):
 				#TODO draw line from i to last_node index and update the cursor line to be originating from node with index i
 				node_history.push_front(current_node_index)
 				current_node_index = i
+				print("snapped to node", i)
 				break
 
 
