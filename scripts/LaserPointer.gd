@@ -3,12 +3,14 @@ extends Node3D
 var casting_spell := "fizzle"
 var saved_target
 var left_controller := false
+var building_bridge := false
 
 signal ignite
 signal time_change
 signal ice_bridge
 signal ice_block
 signal electric
+signal bridge
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +44,9 @@ func _process(delta):
 		var collision_distance = result["position"].distance_to(start_point)
 		self.scale.z = collision_distance
 		self.position = result["position"].lerp(start_point, 0.5)
+		
+		if building_bridge:
+			bridge.emit(saved_target, result["position"])
 		
 		var menus = get_tree().get_nodes_in_group("spatial_menus")
 		for menu in menus:
@@ -125,9 +130,11 @@ func _on_right_controller_button_pressed(name):
 			if saved_target == null:
 				saved_target = result["position"]
 				ice_block.emit(saved_target)
+				building_bridge = true
 			else:
 				ice_bridge.emit(saved_target, result["position"])
 				saved_target = null
+				building_bridge = false
 				self.fizzle()
 				
 	
