@@ -14,5 +14,6 @@ func _on_reset():
 	%XROrigin3D.global_position = Vector3(0, 0, 0)
 
 func _on_win():
-	# TODO 
-	self.position.y += 3
+	self.global_position = Vector3(0, 0, 0)
+	%XROrigin3D.global_position = Vector3(0, 0, 0)
+	# TODO: win notif 

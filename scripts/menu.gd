@@ -171,8 +171,6 @@ func _process(_delta):
 				break
 
 
-
-
 func reset_grid():
 	current_node_index = null
 	node_history = []

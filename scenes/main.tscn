@@ -1,11 +1,11 @@
 [gd_scene load_steps=124 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
-[ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
+[ext_resource type="Script" path="res://scripts/XRUserNew.gd" id="2_75e3s"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_8jieb"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_7ckx0"]
+[ext_resource type="Script" path="res://scripts/Spells.gd" id="4_63cl1"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_p8kn8"]
-[ext_resource type="Script" path="res://scenes/Spells.gd" id="4_rq42a"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7y1nr"]
 [ext_resource type="Texture2D" uid="uid://d0udcon26715i" path="res://assets/leather.jpg" id="5_60ox5"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
@@ -24,10 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://cvskvnjelv5dr" path="res://assets/noswimsign.jpg" id="9_wvo3k"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="11_03m13"]
 [ext_resource type="PackedScene" uid="uid://bwd4w8xy3fmdt" path="res://assets/models/SM_Bean_Cowboy_01.fbx" id="11_7bugu"]
-[ext_resource type="Script" path="res://scripts/patrolling.gd" id="12_u81po"]
 [ext_resource type="PackedScene" uid="uid://bdq73ug14r13p" path="res://assets/models/SM_Bld_Castle_Wall_Gate_01.fbx" id="13_mgw7g"]
 [ext_resource type="PackedScene" uid="uid://cvefppdijsylb" path="res://assets/models/SM_Bld_Castle_Tower_Wall_Top_01.fbx" id="14_m3pjv"]
-[ext_resource type="Script" path="res://scenes/LaserPointer.gd" id="14_yxygf"]
+[ext_resource type="Script" path="res://scripts/LaserPointer.gd" id="15_0pm4t"]
 [ext_resource type="PackedScene" uid="uid://dlfvowm0nx0kl" path="res://assets/models/SM_Bld_Castle_Wall_01.fbx" id="15_ums4q"]
 [ext_resource type="PackedScene" uid="uid://cv4fhmxqc2of3" path="res://assets/models/SM_Prop_Washingline_04.fbx" id="16_m5afb"]
 [ext_resource type="PackedScene" uid="uid://uf4sfchaoho1" path="res://scenes/door_cone_green.tscn" id="17_hki4d"]
@@ -35,8 +34,6 @@
 [ext_resource type="PackedScene" uid="uid://dditwvhvyhte4" path="res://scenes/door_cone_red.tscn" id="18_p7upa"]
 [ext_resource type="Material" uid="uid://d0qsyhp65ura6" path="res://assets/models/polygon_knight.tres" id="19_fpi2f"]
 [ext_resource type="Script" path="res://assets/models/Iron_Gate.gd" id="22_2u3mr"]
-[ext_resource type="Script" path="res://scenes/FlameMesh.gd" id="23_yp44a"]
-[ext_resource type="Script" path="res://scenes/Castle Door.gd" id="28_u6mbp"]
 [ext_resource type="PackedScene" uid="uid://beyuc11ycfd30" path="res://assets/models/SM_Generic_Mountains_Grass_02.fbx" id="29_dreya"]
 [ext_resource type="PackedScene" uid="uid://bwbjfnpxpud3v" path="res://assets/models/SM_Generic_Mountains_Soft_01.fbx" id="30_rho4m"]
 [ext_resource type="PackedScene" uid="uid://cmg6hpxp2ty1" path="res://assets/models/SM_Env_Ice_03.fbx" id="36_5sta2"]
@@ -44,11 +41,14 @@
 [ext_resource type="PackedScene" uid="uid://ddqhrpuuhgw38" path="res://assets/models/SM_Env_Cloud_04.fbx" id="37_dlwew"]
 [ext_resource type="Script" path="res://assets/models/Ice Bridge.gd" id="37_i4mxi"]
 [ext_resource type="PackedScene" uid="uid://cc2p5jps84lxt" path="res://assets/models/SM_Env_Cloud_07.fbx" id="38_pb5wx"]
+[ext_resource type="Script" path="res://scripts/FlameMesh.gd" id="39_02lw1"]
 [ext_resource type="PackedScene" uid="uid://c6sl6ejqd48q" path="res://assets/models/SM_Env_Cloud_01.fbx" id="39_nte7u"]
 [ext_resource type="PackedScene" uid="uid://d0awvr7nho43h" path="res://assets/models/SM_Generic_CloudRing_01.fbx" id="40_q3npu"]
 [ext_resource type="PackedScene" uid="uid://fumueqq82b77" path="res://assets/models/SM_Env_Tree_Twisted_01.fbx" id="41_m81rq"]
+[ext_resource type="Script" path="res://scripts/cowboybean.gd" id="41_ssywi"]
 [ext_resource type="PackedScene" uid="uid://cvc2l5nm8rq6n" path="res://assets/models/SM_Env_Tree_09.fbx" id="42_yhnrh"]
 [ext_resource type="PackedScene" uid="uid://c2vns6rtuq0kb" path="res://assets/models/SM_Env_Tree_08.fbx" id="43_g51n8"]
+[ext_resource type="Script" path="res://scripts/Castle Door.gd" id="44_7re51"]
 [ext_resource type="PackedScene" uid="uid://dtiequxfjck0a" path="res://assets/models/SM_Env_Mushroom_01.fbx" id="44_jllb7"]
 [ext_resource type="PackedScene" uid="uid://cp0nbsqfyqy12" path="res://assets/models/SM_Env_Pebble_01.fbx" id="45_tkw1u"]
 [ext_resource type="PackedScene" uid="uid://bowhxc2fj3m8c" path="res://assets/models/SM_Env_TreeLog_01.fbx" id="46_hedfo"]
@@ -159,14 +159,17 @@ size = Vector2(100, 100)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbyrh"]
 albedo_color = Color(0.419608, 0.407843, 0.376471, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_reuu5"]
-size = Vector3(60, 48, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsv0w"]
 albedo_color = Color(0.419608, 0.407843, 0.376471, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybpyd"]
-albedo_color = Color(0.419608, 0.407843, 0.376471, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_reuu5"]
+size = Vector3(100, 48, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_upwhj"]
+size = Vector3(100, 30, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ufmi"]
+size = Vector3(100, 30, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdkra"]
 transparency = 1
@@ -365,7 +368,7 @@ script = ExtResource("1_xecma")
 [node name="XRUser" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
 lock_rotation = true
-script = ExtResource("2_5ghs3")
+script = ExtResource("2_75e3s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -416,7 +419,7 @@ size = Vector2i(900, 1200)
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport"]
-script = ExtResource("4_rq42a")
+script = ExtResource("4_63cl1")
 
 [node name="Keybinds" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
 position = Vector2(450, 600)
@@ -553,8 +556,12 @@ turn_mode = 0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 1.2, 1.5)
 material_override = SubResource("StandardMaterial3D_k0m35")
 mesh = SubResource("BoxMesh_84hmm")
+<<<<<<< HEAD
 skeleton = NodePath("../XRUser/XROrigin3D/RightController")
 script = ExtResource("14_yxygf")
+=======
+script = ExtResource("15_0pm4t")
+>>>>>>> 8f9b4aa9122b8d392d13fcd23c707eab1e575f1c
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")
@@ -587,23 +594,19 @@ shape = SubResource("BoxShape3D_t32ny")
 [node name="Bounds" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
 
-[node name="BoundingBack" type="StaticBody3D" parent="Bounds"]
+[node name="FakeGround" type="Node3D" parent="Bounds"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/BoundingBack"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/FakeGround"]
 transform = Transform3D(-1, 8.74228e-08, -1.04251e-15, 8.74228e-08, 1, -5.56363e-08, -3.82137e-15, -5.56363e-08, -1, 22, 0, -39)
 mesh = SubResource("PlaneMesh_7xstc")
 skeleton = NodePath("../../../Decoration")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbyrh")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds/BoundingBack"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds/FakeGround"]
 transform = Transform3D(-1, 8.74228e-08, -1.04251e-15, 8.74228e-08, 1, -5.56363e-08, -3.82137e-15, -5.56363e-08, -1, 22, -0.02, 66)
 mesh = SubResource("PlaneMesh_7xstc")
 skeleton = NodePath("../../../Decoration")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbyrh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/BoundingBack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 23, -8)
-shape = SubResource("BoxShape3D_reuu5")
 
 [node name="BoundingLeft" type="StaticBody3D" parent="Bounds"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54, 0, 38)
@@ -620,18 +623,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 23, -8)
 shape = SubResource("BoxShape3D_reuu5")
 
 [node name="BoundingRight" type="StaticBody3D" parent="Bounds"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 38)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -6)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/BoundingRight"]
-transform = Transform3D(-1, 1.00226e-07, 3.09086e-08, 9.27259e-08, 0.707107, 0.707107, 4.90145e-08, 0.707107, -0.707107, 19, 0, -23)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds/BoundingRight"]
 visible = false
-mesh = SubResource("PlaneMesh_7xstc")
-skeleton = NodePath("../../../Decoration")
-surface_material_override/0 = SubResource("StandardMaterial3D_ybpyd")
+mesh = SubResource("BoxMesh_upwhj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/BoundingRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 23, -8)
-shape = SubResource("BoxShape3D_reuu5")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bounds/BoundingRight"]
+shape = SubResource("BoxShape3D_3ufmi")
+
+[node name="BoundingLeft2" type="StaticBody3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45, 0, -6)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds/BoundingLeft2"]
+visible = false
+mesh = SubResource("BoxMesh_upwhj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bounds/BoundingLeft2"]
+shape = SubResource("BoxShape3D_3ufmi")
+
+[node name="BoundingBack" type="StaticBody3D" parent="Bounds"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 16, 0, -6)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds/BoundingBack"]
+visible = false
+mesh = SubResource("BoxMesh_upwhj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bounds/BoundingBack"]
+shape = SubResource("BoxShape3D_3ufmi")
 
 [node name="Decoration" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
@@ -652,7 +671,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 15, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10, -10)
 
 [node name="SM_Generic_CloudRing_01" parent="Decoration/Clouds" instance=ExtResource("40_q3npu")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12, 0, 10)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12, 0, -15)
 
 [node name="SM_Env_Tree_Twisted_01" parent="Decoration" instance=ExtResource("41_m81rq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -1)
@@ -1314,7 +1333,7 @@ shape = SubResource("BoxShape3D_uwq3k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 material_override = SubResource("StandardMaterial3D_0athe")
 mesh = SubResource("SphereMesh_nb45m")
-script = ExtResource("23_yp44a")
+script = ExtResource("39_02lw1")
 
 [node name="brazier2" type="Area3D" parent="Hedge Gate/Gate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.95, 0)
@@ -1329,14 +1348,14 @@ shape = SubResource("BoxShape3D_634nx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 material_override = SubResource("StandardMaterial3D_0athe")
 mesh = SubResource("SphereMesh_nb45m")
-script = ExtResource("23_yp44a")
+script = ExtResource("39_02lw1")
 
 [node name="Bean3D Like Never Seen Before" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
 [node name="SM_Bean_Cowboy_01" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21, 0, 1.5)
-script = ExtResource("12_u81po")
+script = ExtResource("41_ssywi")
 
 [node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01"]
 
@@ -1346,7 +1365,7 @@ shape = SubResource("CapsuleShape3D_l4jgu")
 
 [node name="SM_Bean_Cowboy_02" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, -1.5)
-script = ExtResource("12_u81po")
+script = ExtResource("41_ssywi")
 
 [node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02"]
 
@@ -1356,7 +1375,7 @@ shape = SubResource("CapsuleShape3D_8finy")
 
 [node name="SM_Bean_Cowboy_03" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21, 0, 4.5)
-script = ExtResource("12_u81po")
+script = ExtResource("41_ssywi")
 
 [node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03"]
 
@@ -1366,7 +1385,7 @@ shape = SubResource("CapsuleShape3D_0wohi")
 
 [node name="SM_Bean_Cowboy_04" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -4.5)
-script = ExtResource("12_u81po")
+script = ExtResource("41_ssywi")
 
 [node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04"]
 
@@ -1401,7 +1420,7 @@ shape = SubResource("BoxShape3D_nhx5a")
 [node name="Castle Gate" type="Node3D" parent="Castle Wall"]
 
 [node name="Castle Door" type="Node3D" parent="Castle Wall/Castle Gate"]
-script = ExtResource("28_u6mbp")
+script = ExtResource("44_7re51")
 
 [node name="door_frame" type="MeshInstance3D" parent="Castle Wall/Castle Gate/Castle Door"]
 mesh = SubResource("ArrayMesh_xmand")
@@ -1864,6 +1883,7 @@ shape = SubResource("BoxShape3D_e58ar")
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_pressed"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="LaserPointer" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_released"]
+<<<<<<< HEAD
 [connection signal="electric" from="LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
 [connection signal="ice_bridge" from="LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
 [connection signal="ignite" from="LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
@@ -1872,6 +1892,20 @@ shape = SubResource("BoxShape3D_e58ar")
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
+=======
+[connection signal="electric" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
+[connection signal="ice_bridge" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier2/FlameMesh" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_laser_pointer_ignite"]
+[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" method="_on_time_change"]
+[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
+[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
+[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
+>>>>>>> 8f9b4aa9122b8d392d13fcd23c707eab1e575f1c
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
 [connection signal="the_beacons_are_lit" from="Hedge Gate/Gate/brazier1/FlameMesh" to="Hedge Gate/Gate/Door/SM_Bld_Castle_Iron_Gate_01" method="_on_the_beacons_are_lit"]
