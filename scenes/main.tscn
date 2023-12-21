@@ -1128,7 +1128,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 0)
 [node name="SM_Bld_Castle_Tower_Wall_Top_01" parent="Castle Wall/Castle Section10" instance=ExtResource("14_m3pjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-<<<<<<< HEAD
 [node name="Ice Bridge" parent="." instance=ExtResource("36_5sta2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58884, 0.540019, 4.07207)
 script = ExtResource("37_i4mxi")
@@ -1137,7 +1136,6 @@ script = ExtResource("37_i4mxi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ice Bridge/StaticBody3D"]
 shape = SubResource("BoxShape3D_5eruu")
-=======
 [node name="Decoration" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
 
@@ -1181,7 +1179,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -5)
 
 [node name="SM_Env_Tree_05" parent="Decoration" instance=ExtResource("47_yaqo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
->>>>>>> a7f665872366281b3bfaf7c60c263c6a792dd59e
 
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer" method="_on_change_spell"]
 [connection signal="fire" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_fire"]
@@ -1192,7 +1189,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_released"]
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/RightController" to="XRUser" method="process_input"]
-<<<<<<< HEAD
 [connection signal="ice_bridge" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
 [connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
 [connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier2/FlameMesh" method="_on_laser_pointer_ignite"]
@@ -1201,7 +1197,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
 [connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
 [connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
 =======
->>>>>>> a7f665872366281b3bfaf7c60c263c6a792dd59e
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
 [connection signal="the_beacons_are_lit" from="Hedge Gate/Gate/brazier1/FlameMesh" to="Hedge Gate/Gate/Door/SM_Bld_Castle_Iron_Gate_01" method="_on_the_beacons_are_lit"]
