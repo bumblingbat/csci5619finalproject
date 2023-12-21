@@ -7,7 +7,6 @@ var drawing = false # Variable tracking if the trigger on the controller is depr
 var current_node_index = null # Variable tracking the node that is currently being drawn fron. Is null or 0-11
 var node_history = [] # Stack tracking the nodes previously visited. Drawing pushes a node to the front, and backtracking pops from the front
 
-
 # format of line indices:
 #     *  0  *
 #   1   2  3  4
@@ -388,10 +387,23 @@ func check_line_available(line_index) -> bool:
 	return (mask_list[line_index] & current_pattern) == 0
   
 # placeholder function for starting to draw, needs more logic
-func _on_trigger_pressed():
+func _on_trigger_pressed(button):
+	if button == "grip_click":
+		var book_spell = $"../../../LeftSide/LeftPage/SpellListViewport/CanvasLayer".current_spell
+		if book_spell == 0:
+			fire.emit()
+		elif book_spell == 1:
+			ice.emit()
+		elif book_spell == 2:
+			lightning.emit()
+		elif book_spell == 3:
+			time_stop.emit()
+	
+	if button != "trigger_click":
+		return
 	last_position = get_mouse_position()
 
-	for i in node_positions.length:
+	for i in range(len(node_positions)):
 		if node_positions[i].distance_to(last_position) < snap_radius:
 			current_node_index = i
 			drawing = true
@@ -399,8 +411,10 @@ func _on_trigger_pressed():
 			return
 
 # placeholder function for ending drawing session, needs more logic
-func _on_trigger_released():
-	cast(evaluate_drawing())
+func _on_trigger_released(button):
+	if button != "trigger_click":
+		return
+	#cast(evaluate_drawing())
 	reset_grid()
 
 func _on_button_pressed():

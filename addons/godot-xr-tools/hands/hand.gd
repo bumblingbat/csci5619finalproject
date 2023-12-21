@@ -116,6 +116,8 @@ func _ready() -> void:
 	# Save the initial hand transform
 	_initial_transform = transform
 	_transform = _initial_transform
+	
+	self.hand_material_override.albedo_color = Color(0.0, 0.0, 0.0)
 
 	# Disconnect from parent transform as we move to it in the physics step,
 	# and boost the physics priority after any grab-drivers but before other
