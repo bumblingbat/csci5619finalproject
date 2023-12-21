@@ -1,13 +1,15 @@
-[gd_scene load_steps=61 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=73 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
+[ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_8jieb"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_7ckx0"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_p8kn8"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7y1nr"]
+[ext_resource type="Texture2D" uid="uid://d0udcon26715i" path="res://assets/leather.jpg" id="5_60ox5"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
+[ext_resource type="Texture2D" uid="uid://lfrdf02j5eec" path="res://assets/Hex_Grid.jpg" id="5_htbn6"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_l67yh"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_014dp"]
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
@@ -29,8 +31,43 @@
 radius = 0.25
 height = 1.6
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0dxph"]
+radius = 0.25
+height = 1.6
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqnmo"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1bdb"]
+size = Vector3(0.36, 0.01, 0.24)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qw1tg"]
+size = Vector2(0.18, 0.24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqb63"]
+albedo_color = Color(0.592157, 0.341176, 0.168627, 1)
+albedo_texture = ExtResource("5_60ox5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_l0124"]
+size = Vector3(0.19, 0.009, 0.26)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2fort"]
+viewport_path = NodePath("XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quspu"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2fort")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5w8ic"]
+size = Vector2(0.18, 0.24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5gmy"]
+albedo_color = Color(0.592157, 0.341176, 0.168627, 1)
+albedo_texture = ExtResource("5_60ox5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gnvtk"]
+size = Vector3(0.19, 0.009, 0.26)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pywdl"]
 albedo_color = Color(0, 0, 0, 1)
@@ -224,7 +261,9 @@ radius = 0.33
 script = ExtResource("1_xecma")
 
 [node name="XRUser" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
 lock_rotation = true
+script = ExtResource("2_5ghs3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -238,6 +277,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
+[node name="PlayerArea" type="Area3D" parent="XRUser/XROrigin3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/PlayerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_0dxph")
+
 [node name="LeftController" type="XRController3D" parent="XRUser/XROrigin3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.2, -1)
@@ -246,9 +291,50 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("3_8jieb")]
 hand_material_override = SubResource("StandardMaterial3D_lqnmo")
 
-[node name="MovementTurn" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("5_7y1nr")]
+[node name="Book" type="Node3D" parent="XRUser/XROrigin3D/LeftController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.06)
 
-[node name="MovementDirect" parent="XRUser/XROrigin3D/LeftController" instance=ExtResource("4_p8kn8")]
+[node name="BookArea" type="Area3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/LeftController/Book/BookArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0)
+shape = SubResource("BoxShape3D_x1bdb")
+
+[node name="LeftSide" type="Node3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0, 0)
+
+[node name="LeftPage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide"]
+mesh = SubResource("PlaneMesh_qw1tg")
+skeleton = NodePath("../..")
+
+[node name="LeftCover" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, -0.005, 0)
+material_override = SubResource("StandardMaterial3D_oqb63")
+mesh = SubResource("BoxMesh_l0124")
+skeleton = NodePath("../..")
+
+[node name="RightSide" type="Node3D" parent="XRUser/XROrigin3D/LeftController/Book"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0, 0)
+
+[node name="RightPage" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide"]
+material_override = SubResource("StandardMaterial3D_quspu")
+mesh = SubResource("PlaneMesh_5w8ic")
+skeleton = NodePath("../..")
+
+[node name="RightPageViewport" type="SubViewport" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage"]
+size = Vector2i(900, 1200)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport"]
+
+[node name="HexGrid" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
+position = Vector2(450, 600)
+texture = ExtResource("5_htbn6")
+
+[node name="RightCover" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005, -0.005, 0)
+material_override = SubResource("StandardMaterial3D_r5gmy")
+mesh = SubResource("BoxMesh_gnvtk")
+skeleton = NodePath("../..")
 
 [node name="RightController" type="XRController3D" parent="XRUser/XROrigin3D"]
 unique_name_in_owner = true
@@ -261,14 +347,9 @@ hand_material_override = SubResource("StandardMaterial3D_pywdl")
 [node name="MovementDirect" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("4_p8kn8")]
 
 [node name="MovementTurn" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("5_7y1nr")]
+turn_mode = 0
 
-[node name="PlayerBody" type="CharacterBody3D" parent="XRUser/XROrigin3D" groups=["player_body"] instance=ExtResource("5_l67yh")]
-process_priority = -100
-process_physics_priority = -100
-top_level = true
-collision_layer = 524288
-collision_mask = 1023
-script = ExtResource("6_014dp")
+[node name="PlayerBody" parent="XRUser/XROrigin3D" instance=ExtResource("5_l67yh")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")
@@ -305,11 +386,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
 mesh = SubResource("BoxMesh_didrd")
 
-[node name="Area3D" type="Area3D" parent="Moat"]
+[node name="MoatArea" type="Area3D" parent="Moat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.75)
 script = ExtResource("9_6oy3r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Moat/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Moat/MoatArea"]
 shape = SubResource("BoxShape3D_dqy35")
 
 [node name="Moat Segment" type="StaticBody3D" parent="Moat"]
@@ -907,3 +988,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/RightController" to="XRUser" method="process_input"]
+[connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
+[connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
