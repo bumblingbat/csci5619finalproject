@@ -101,6 +101,8 @@ func _on_right_controller_button_pressed(name):
 	if casting_spell == "fire":
 		if result["collider"] == $"../../../../Hedge Gate/Gate/brazier1" or result["collider"] == $"../../../../Hedge Gate/Gate/brazier2":
 			ignite.emit(result["collider"].find_child("FlameMesh"))
+		elif result["collider"] == $"Bean3D Like Never Seen Before/SM_Bean_Cowboy_01/CowboyArea" or  $"Bean3D Like Never Seen Before/SM_Bean_Cowboy_02/CowboyArea" or  $"Bean3D Like Never Seen Before/SM_Bean_Cowboy_03/CowboyArea" or  $"Bean3D Like Never Seen Before/SM_Bean_Cowboy_04/CowboyArea":
+			ignite.emit(result["collider"].get_parent())
 		self.fizzle()
 	
 	elif casting_spell == "ice":

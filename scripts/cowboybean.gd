@@ -30,3 +30,7 @@ func _on_cowboy_area_entered(area):
 
 func _on_time_change():
 	time_stopped = not time_stopped
+
+func _on_laser_pointer_ignite(name):
+	if name == self and self.is_visible_in_tree():
+		self.hide()
