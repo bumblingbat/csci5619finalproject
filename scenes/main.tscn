@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=125 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scripts/XRUserNew.gd" id="2_75e3s"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_p8kn8"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_7y1nr"]
 [ext_resource type="Texture2D" uid="uid://d0udcon26715i" path="res://assets/leather.jpg" id="5_60ox5"]
+[ext_resource type="Texture2D" uid="uid://t6tuloi3fq1c" path="res://assets/keybinds.png" id="5_bo43l"]
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
 [ext_resource type="Texture2D" uid="uid://lfrdf02j5eec" path="res://assets/Hex_Grid.jpg" id="5_htbn6"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_l67yh"]
@@ -418,6 +419,10 @@ render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport"]
 script = ExtResource("4_63cl1")
+
+[node name="Keybinds" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+position = Vector2(450, 600)
+texture = ExtResource("5_bo43l")
 
 [node name="Fireball" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
 position = Vector2(450, 600)
