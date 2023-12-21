@@ -1118,16 +1118,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 5)
 
 [node name="SM_Env_Cloud_03" parent="Decoration/Clouds" instance=ExtResource("36_x61bx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 8, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 17, 4)
 
 [node name="SM_Env_Cloud_04" parent="Decoration/Clouds" instance=ExtResource("37_dlwew")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 10, 22)
 
 [node name="SM_Env_Cloud_07" parent="Decoration/Clouds" instance=ExtResource("38_pb5wx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 15, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 15, 4)
 
 [node name="SM_Env_Cloud_01" parent="Decoration/Clouds" instance=ExtResource("39_nte7u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 10, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10, -10)
 
 [node name="SM_Generic_CloudRing_01" parent="Decoration/Clouds" instance=ExtResource("40_q3npu")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12, 0, 10)
