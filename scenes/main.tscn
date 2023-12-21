@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=118 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
@@ -51,6 +51,8 @@
 [ext_resource type="PackedScene" uid="uid://bowhxc2fj3m8c" path="res://assets/models/SM_Env_TreeLog_01.fbx" id="46_hedfo"]
 [ext_resource type="PackedScene" uid="uid://dk2xaftabw4c6" path="res://assets/models/SM_Env_Tree_05.fbx" id="47_yaqo5"]
 [ext_resource type="Texture2D" uid="uid://b8tia1s3lv0s0" path="res://assets/grunge-wall-texture.jpg" id="51_u1r8n"]
+[ext_resource type="PackedScene" uid="uid://crhivf414dhed" path="res://assets/models/SM_Prop_Chest_01.fbx" id="52_rm8df"]
+[ext_resource type="Script" path="res://scripts/winarea.gd" id="53_fd317"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd8eo"]
 radius = 0.25
@@ -146,6 +148,12 @@ size = Vector3(48, 1, 80)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t32ny"]
 size = Vector3(48, 1, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7xstc"]
+size = Vector2(48, 48)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_reuu5"]
+size = Vector3(60, 48, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdkra"]
 transparency = 1
@@ -335,6 +343,9 @@ albedo_texture = ExtResource("51_u1r8n")
 material = SubResource("StandardMaterial3D_xf1bc")
 size = Vector2(48, 48)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e58ar"]
+size = Vector3(1.3, 1, 1)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_xecma")
 
@@ -356,6 +367,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="PlayerArea" type="Area3D" parent="XRUser/XROrigin3D"]
+unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRUser/XROrigin3D/PlayerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
@@ -553,6 +565,47 @@ shape = SubResource("BoxShape3D_trsr2")
 [node name="firstpart" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -37)
 shape = SubResource("BoxShape3D_t32ny")
+
+[node name="Bounds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
+
+[node name="BoundingBack" type="StaticBody3D" parent="Bounds"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/BoundingBack"]
+transform = Transform3D(-1, 8.74228e-08, -1.04251e-15, 0, 1.19249e-08, 1, 8.74228e-08, 1, -1.19249e-08, 22, 23, -8)
+visible = false
+mesh = SubResource("PlaneMesh_7xstc")
+skeleton = NodePath("../../../Decoration")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/BoundingBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 23, -8)
+shape = SubResource("BoxShape3D_reuu5")
+
+[node name="BoundingLeft" type="StaticBody3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54, 0, 38)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/BoundingLeft"]
+transform = Transform3D(-1, 8.74228e-08, -1.04251e-15, 0, 1.19249e-08, 1, 8.74228e-08, 1, -1.19249e-08, 22, 23, -8)
+visible = false
+mesh = SubResource("PlaneMesh_7xstc")
+skeleton = NodePath("../../../Decoration")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/BoundingLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 23, -8)
+shape = SubResource("BoxShape3D_reuu5")
+
+[node name="BoundingRight" type="StaticBody3D" parent="Bounds"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 38)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds/BoundingRight"]
+transform = Transform3D(-1, 8.74228e-08, -1.04251e-15, 0, 1.19249e-08, 1, 8.74228e-08, 1, -1.19249e-08, 22, 23, -8)
+visible = false
+mesh = SubResource("PlaneMesh_7xstc")
+skeleton = NodePath("../../../Decoration")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds/BoundingRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 23, -8)
+shape = SubResource("BoxShape3D_reuu5")
 
 [node name="Decoration" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -5)
@@ -1261,7 +1314,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 [node name="Rest of Castle" type="Node3D" parent="."]
 
 [node name="Castle Wall2" type="Node3D" parent="Rest of Castle"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23, 0, 65)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23, 0, 64)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Rest of Castle/Castle Wall2"]
 
@@ -1570,6 +1623,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -1, 0.001, 65)
 mesh = SubResource("PlaneMesh_alaaf")
 
+[node name="Treasure" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 56)
+
+[node name="TreasureModel" parent="Treasure" instance=ExtResource("52_rm8df")]
+
+[node name="WinArea" type="Area3D" parent="Treasure"]
+script = ExtResource("53_fd317")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Treasure/WinArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_e58ar")
+
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer" method="_on_change_spell"]
 [connection signal="fire" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_fire"]
 [connection signal="ice" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_ice"]
@@ -1598,3 +1663,5 @@ mesh = SubResource("PlaneMesh_alaaf")
 [connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_cowboy_area_entered"]
 [connection signal="reset" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" to="XRUser" method="_on_reset"]
 [connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_cowboy_area_entered"]
+[connection signal="area_entered" from="Treasure/WinArea" to="Treasure/WinArea" method="_on_area_entered"]
+[connection signal="win" from="Treasure/WinArea" to="XRUser" method="_on_win"]

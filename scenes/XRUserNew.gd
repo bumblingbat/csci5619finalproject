@@ -12,3 +12,7 @@ func _process(delta):
 func _on_reset():
 	self.global_position = Vector3(0, 0, 0)
 	%XROrigin3D.global_position = Vector3(0, 0, 0)
+
+func _on_win():
+	# TODO 
+	self.position.y += 3
