@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=87 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/patrolling.gd" id="12_u81po"]
 [ext_resource type="PackedScene" uid="uid://bdq73ug14r13p" path="res://assets/models/SM_Bld_Castle_Wall_Gate_01.fbx" id="13_mgw7g"]
 [ext_resource type="PackedScene" uid="uid://cvefppdijsylb" path="res://assets/models/SM_Bld_Castle_Tower_Wall_Top_01.fbx" id="14_m3pjv"]
+[ext_resource type="Script" path="res://scenes/LaserPointer.gd" id="14_yxygf"]
 [ext_resource type="PackedScene" uid="uid://dlfvowm0nx0kl" path="res://assets/models/SM_Bld_Castle_Wall_01.fbx" id="15_ums4q"]
 [ext_resource type="PackedScene" uid="uid://cv4fhmxqc2of3" path="res://assets/models/SM_Prop_Washingline_04.fbx" id="16_m5afb"]
 [ext_resource type="PackedScene" uid="uid://uf4sfchaoho1" path="res://scenes/door_cone_green.tscn" id="17_hki4d"]
@@ -83,6 +84,14 @@ size = Vector3(0.19, 0.009, 0.26)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pywdl"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0m35"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.588235, 0, 0.745098, 0.784314)
+
+[sub_resource type="BoxMesh" id="BoxMesh_84hmm"]
+size = Vector3(0.005, 0.005, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -159,6 +168,14 @@ size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_634nx"]
 size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4jgu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8finy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0wohi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbfla"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhx5a"]
 size = Vector3(23, 5, 2)
@@ -383,6 +400,12 @@ hand_material_override = SubResource("StandardMaterial3D_pywdl")
 
 [node name="MovementTurn" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("5_7y1nr")]
 turn_mode = 0
+
+[node name="LaserPointer" type="MeshInstance3D" parent="XRUser/XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+material_override = SubResource("StandardMaterial3D_k0m35")
+mesh = SubResource("BoxMesh_84hmm")
+script = ExtResource("14_yxygf")
 
 [node name="PlayerBody" parent="XRUser/XROrigin3D" instance=ExtResource("5_l67yh")]
 
@@ -862,17 +885,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21, 0, 1.5)
 script = ExtResource("12_u81po")
 
+[node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01/CowboyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_l4jgu")
+
 [node name="SM_Bean_Cowboy_02" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, -1.5)
 script = ExtResource("12_u81po")
+
+[node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02/CowboyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_8finy")
 
 [node name="SM_Bean_Cowboy_03" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21, 0, 4.5)
 script = ExtResource("12_u81po")
 
+[node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03/CowboyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0wohi")
+
 [node name="SM_Bean_Cowboy_04" parent="Bean3D Like Never Seen Before" instance=ExtResource("11_7bugu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -4.5)
 script = ExtResource("12_u81po")
+
+[node name="CowboyArea" type="Area3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04/CowboyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_dbfla")
 
 [node name="Castle Wall" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
@@ -1026,3 +1073,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/RightController" to="XRUser" method="process_input"]
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
+[connection signal="reset" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" to="XRUser" method="_on_reset"]
+[connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" method="_on_cowboy_area_entered"]
+[connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_cowboy_area_entered"]
+[connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_cowboy_area_entered"]
+[connection signal="area_entered" from="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04/CowboyArea" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_cowboy_area_entered"]

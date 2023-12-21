@@ -8,11 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if self.position.y < -0.5:
-		print("below")
-		self.position = Vector3(0, 0, 0)
-		self.rotation.y = PI
+	pass
 
 func _on_reset():
-	print("reseting")
-	self.position = Vector3(0, 0, 0)
+	self.global_position = Vector3(0, 0, 0)
+	%XROrigin3D.global_position = Vector3(0, 0, 0)

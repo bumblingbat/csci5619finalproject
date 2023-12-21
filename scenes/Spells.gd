@@ -9,7 +9,12 @@ var current_spell := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var children_spells = self.get_children()
+	for i in range(len(children_spells)):
+		if i == current_spell:
+			children_spells[i].set_visible(true)
+		else:
+			children_spells[i].set_visible(false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

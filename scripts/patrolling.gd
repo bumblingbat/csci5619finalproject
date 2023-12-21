@@ -1,5 +1,7 @@
 extends Node3D
 
+signal reset
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,4 +19,7 @@ func _process(delta):
 			self.position.x = -21
 	
 	self.position += movement_vector.rotated(Vector3.UP, self.rotation.y)
-	
+
+func _on_cowboy_area_entered(area):
+	if area == $"../../XRUser/XROrigin3D/PlayerArea":
+		reset.emit()
