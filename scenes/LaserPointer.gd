@@ -5,6 +5,7 @@ var saved_target
 
 signal ignite
 signal time_change
+signal ice_bridge
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,7 +61,11 @@ func _on_right_controller_button_pressed(name):
 		return
 	if casting_spell == "fizzle":
 		return
-	
+
+	elif casting_spell == "time stop":
+		time_change.emit()
+		self.fizzle()
+		
 	var start_point = get_parent().global_position
 	var end_point = get_parent().global_transform * Vector3(0, 0, -100)
 
@@ -79,14 +84,18 @@ func _on_right_controller_button_pressed(name):
 	
 	elif casting_spell == "ice":
 		if result["collider"] is StaticBody3D:
-			print("targeted ground")
+			if saved_target == null:
+				saved_target = result["position"]
+			else:
+				ice_bridge.emit(saved_target, result["position"])
+				saved_target = null
+				self.fizzle()
+				
 	
 	elif casting_spell == "lightning":
 		if result["collider"] is StaticBody3D:
-			print("targeted ground")
-	
-	elif casting_spell == "time stop":
-		time_change.emit()
+			pass
 		self.fizzle()
+	
 	else:
 		return
