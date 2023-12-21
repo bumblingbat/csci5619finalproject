@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 [gd_scene load_steps=95 format=3 uid="uid://d46wrkgdeynk"]
-=======
 [gd_scene load_steps=104 format=3 uid="uid://d46wrkgdeynk"]
->>>>>>> a7f665872366281b3bfaf7c60c263c6a792dd59e
-=======
 [gd_scene load_steps=106 format=3 uid="uid://d46wrkgdeynk"]
->>>>>>> b714873810e2fbd7d68f4949b3c0a5d03e112c24
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
@@ -43,10 +37,8 @@
 [ext_resource type="Material" uid="uid://d0qsyhp65ura6" path="res://assets/models/polygon_knight.tres" id="19_fpi2f"]
 [ext_resource type="Script" path="res://assets/models/Iron_Gate.gd" id="22_2u3mr"]
 [ext_resource type="Script" path="res://scenes/FlameMesh.gd" id="23_yp44a"]
-<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://cmg6hpxp2ty1" path="res://assets/models/SM_Env_Ice_03.fbx" id="36_5sta2"]
 [ext_resource type="Script" path="res://assets/models/Ice Bridge.gd" id="37_i4mxi"]
-=======
 [ext_resource type="PackedScene" uid="uid://bj2nim0qkcb4n" path="res://assets/models/SM_Env_Cloud_03.fbx" id="36_x61bx"]
 [ext_resource type="PackedScene" uid="uid://ddqhrpuuhgw38" path="res://assets/models/SM_Env_Cloud_04.fbx" id="37_dlwew"]
 [ext_resource type="PackedScene" uid="uid://cc2p5jps84lxt" path="res://assets/models/SM_Env_Cloud_07.fbx" id="38_pb5wx"]
@@ -59,7 +51,6 @@
 [ext_resource type="PackedScene" uid="uid://cp0nbsqfyqy12" path="res://assets/models/SM_Env_Pebble_01.fbx" id="45_tkw1u"]
 [ext_resource type="PackedScene" uid="uid://bowhxc2fj3m8c" path="res://assets/models/SM_Env_TreeLog_01.fbx" id="46_hedfo"]
 [ext_resource type="PackedScene" uid="uid://dk2xaftabw4c6" path="res://assets/models/SM_Env_Tree_05.fbx" id="47_yaqo5"]
->>>>>>> a7f665872366281b3bfaf7c60c263c6a792dd59e
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cd8eo"]
 radius = 0.25
