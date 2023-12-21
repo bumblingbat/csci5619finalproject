@@ -407,16 +407,17 @@ func check_line_available(line_index) -> bool:
 # placeholder function for starting to draw, needs more logic
 func _on_trigger_pressed(button):
 	print(get_mouse_position())
-	if button == "grip_click":
-		var book_spell = $"../../../LeftSide/LeftPage/SpellListViewport/CanvasLayer".current_spell
-		if book_spell == 0:
-			fire.emit()
-		elif book_spell == 1:
-			ice.emit()
-		elif book_spell == 2:
-			lightning.emit()
-		elif book_spell == 3:
-			time_stop.emit()
+	
+#	if button == "grip_click":
+#		var book_spell = $"../../../LeftSide/LeftPage/SpellListViewport/CanvasLayer".current_spell
+#		if book_spell == 0:
+#			fire.emit()
+#		elif book_spell == 1:
+#			ice.emit()
+#		elif book_spell == 2:
+#			lightning.emit()
+#		elif book_spell == 3:
+#			time_stop.emit()
 	
 	if button != "trigger_click":
 		return

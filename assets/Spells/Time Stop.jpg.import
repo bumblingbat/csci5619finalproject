@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddyqvndfh7mo3"
-path="res://.godot/imported/Time Stop.png-1fe2e8bfc7dd92d94b28ed7abddf3e68.ctex"
+uid="uid://xuesc2gxsd6m"
+path="res://.godot/imported/Time Stop.jpg-be30d8624c0ce4197a156aeb6c87f3b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spells/Time Stop.png"
-dest_files=["res://.godot/imported/Time Stop.png-1fe2e8bfc7dd92d94b28ed7abddf3e68.ctex"]
+source_file="res://assets/Spells/Time Stop.jpg"
+dest_files=["res://.godot/imported/Time Stop.jpg-be30d8624c0ce4197a156aeb6c87f3b0.ctex"]
 
 [params]
 

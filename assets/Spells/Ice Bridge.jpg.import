@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b35h72g7qukq8"
-path="res://.godot/imported/Ice Bridge.png-ecd190b5bcb24ba122af8d67bb76148d.ctex"
+uid="uid://btl3vm04cl6hf"
+path="res://.godot/imported/Ice Bridge.jpg-72790692b6ef7241c7b391519a7f3433.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spells/Ice Bridge.png"
-dest_files=["res://.godot/imported/Ice Bridge.png-ecd190b5bcb24ba122af8d67bb76148d.ctex"]
+source_file="res://assets/Spells/Ice Bridge.jpg"
+dest_files=["res://.godot/imported/Ice Bridge.jpg-72790692b6ef7241c7b391519a7f3433.ctex"]
 
 [params]
 

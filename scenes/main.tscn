@@ -1,9 +1,8 @@
-[gd_scene load_steps=109 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=110 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_8jieb"]
-[ext_resource type="Texture2D" uid="uid://v4ynlcy5ht12" path="res://assets/Spells/Fireball.png" id="4_1mxq8"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_7ckx0"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_p8kn8"]
 [ext_resource type="Script" path="res://scenes/Spells.gd" id="4_rq42a"]
@@ -12,11 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://qmypdohgi5s8" path="res://assets/models/SM_Env_Hedge_01.fbx" id="5_g7edt"]
 [ext_resource type="Texture2D" uid="uid://lfrdf02j5eec" path="res://assets/Hex_Grid.jpg" id="5_htbn6"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_l67yh"]
-[ext_resource type="Texture2D" uid="uid://b35h72g7qukq8" path="res://assets/Spells/Ice Bridge.png" id="5_oglss"]
-[ext_resource type="Texture2D" uid="uid://b5bah1fx4atod" path="res://assets/Spells/Lightning.png" id="6_nusix"]
+[ext_resource type="Texture2D" uid="uid://dnke30thwq78y" path="res://assets/Spells/Fireball.jpg" id="5_p2le2"]
+[ext_resource type="Texture2D" uid="uid://btl3vm04cl6hf" path="res://assets/Spells/Ice Bridge.jpg" id="6_r8ay3"]
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
-[ext_resource type="Texture2D" uid="uid://ddyqvndfh7mo3" path="res://assets/Spells/Time Stop.png" id="7_gexv2"]
+[ext_resource type="Texture2D" uid="uid://b2u74d8kugqkq" path="res://assets/Spells/Lightning.jpg" id="7_8twmx"]
 [ext_resource type="PackedScene" uid="uid://c51g2bvyh46hr" path="res://assets/models/SM_Bld_Castle_Pillar_01.fbx" id="7_guoei"]
+[ext_resource type="Texture2D" uid="uid://xuesc2gxsd6m" path="res://assets/Spells/Time Stop.jpg" id="8_5xjqh"]
 [ext_resource type="PackedScene" uid="uid://dqjnox1oi0f0s" path="res://assets/models/SM_Prop_Brazier_01.fbx" id="8_o0shl"]
 [ext_resource type="Script" path="res://scripts/Area3D.gd" id="9_6oy3r"]
 [ext_resource type="PackedScene" uid="uid://b6sboixmbckxu" path="res://assets/models/SM_Env_Canal_01.fbx" id="9_qefog"]
@@ -35,6 +35,7 @@
 [ext_resource type="Material" uid="uid://d0qsyhp65ura6" path="res://assets/models/polygon_knight.tres" id="19_fpi2f"]
 [ext_resource type="Script" path="res://assets/models/Iron_Gate.gd" id="22_2u3mr"]
 [ext_resource type="Script" path="res://scenes/FlameMesh.gd" id="23_yp44a"]
+[ext_resource type="Script" path="res://scenes/Castle Door.gd" id="28_u6mbp"]
 [ext_resource type="PackedScene" uid="uid://cmg6hpxp2ty1" path="res://assets/models/SM_Env_Ice_03.fbx" id="36_5sta2"]
 [ext_resource type="PackedScene" uid="uid://bj2nim0qkcb4n" path="res://assets/models/SM_Env_Cloud_03.fbx" id="36_x61bx"]
 [ext_resource type="PackedScene" uid="uid://ddqhrpuuhgw38" path="res://assets/models/SM_Env_Cloud_04.fbx" id="37_dlwew"]
@@ -383,20 +384,20 @@ render_target_update_mode = 4
 script = ExtResource("4_rq42a")
 
 [node name="Fireball" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
-texture = ExtResource("4_1mxq8")
-centered = false
+position = Vector2(450, 600)
+texture = ExtResource("5_p2le2")
 
 [node name="Ice Bridge" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
-texture = ExtResource("5_oglss")
-centered = false
+position = Vector2(450, 600)
+texture = ExtResource("6_r8ay3")
 
 [node name="Lightning" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
-texture = ExtResource("6_nusix")
-centered = false
+position = Vector2(450, 600)
+texture = ExtResource("7_8twmx")
 
 [node name="Time Stop" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
-texture = ExtResource("7_gexv2")
-centered = false
+position = Vector2(450, 600)
+texture = ExtResource("8_5xjqh")
 
 [node name="LeftCover" type="MeshInstance3D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005, -0.005, 0)
@@ -425,79 +426,66 @@ texture = ExtResource("5_htbn6")
 
 [node name="line0" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(275, 297, 625, 297)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line1" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(100, 600, 275, 297)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line2" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 275, 297)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line3" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 625, 297)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line4" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(625, 297, 800, 600)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line5" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 100, 600)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line6" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 800, 600)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line7" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(100, 600, 275, 903)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line8" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 275, 903)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="line9" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(450, 600, 625, 903)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="lineA" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(800, 600, 625, 903)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="lineB" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(275, 903, 625, 903)
 default_color = Color(0.980392, 0.470588, 0.964706, 1)
 
 [node name="cursor_line" type="Line2D" parent="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(0.964706, 0.796078, 0, 1)
 
@@ -1076,6 +1064,7 @@ shape = SubResource("BoxShape3D_nhx5a")
 [node name="Castle Gate" type="Node3D" parent="Castle Wall"]
 
 [node name="Castle Door" type="Node3D" parent="Castle Wall/Castle Gate"]
+script = ExtResource("28_u6mbp")
 
 [node name="door_frame" type="MeshInstance3D" parent="Castle Wall/Castle Gate/Castle Door"]
 mesh = SubResource("ArrayMesh_xmand")
@@ -1259,6 +1248,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -5)
 [node name="SM_Env_Tree_05" parent="Decoration" instance=ExtResource("47_yaqo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
 
+[connection signal="input_vector2_changed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer" method="_on_change_spell"]
 [connection signal="fire" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_fire"]
 [connection signal="ice" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_ice"]
 [connection signal="lightning" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_lightning"]
@@ -1266,6 +1256,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -5)
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_pressed"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_released"]
+[connection signal="electric" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
+[connection signal="ice_block" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_block"]
 [connection signal="ice_bridge" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
 [connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
 [connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier2/FlameMesh" method="_on_laser_pointer_ignite"]

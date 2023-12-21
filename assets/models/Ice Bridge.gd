@@ -18,3 +18,11 @@ func _on_laser_pointer_ice_bridge(position1 : Vector3, position2 : Vector3):
 	self.look_at(Vector3(position2.x, position2.y - 0.08, position2.z))
 	self.scale.z = position1.distance_to(position2) / 1.75
 	self.show()
+
+
+func _on_laser_pointer_ice_block(position1):
+	self.position = position1
+	self.position.y -= 0.08
+	self.rotation = Vector3.UP
+	self.scale = Vector3(1, 1, 1)
+	self.show()

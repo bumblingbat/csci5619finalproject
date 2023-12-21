@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5bah1fx4atod"
-path="res://.godot/imported/Lightning.png-44040c73b93114736d9854f49f5bad67.ctex"
+uid="uid://dnke30thwq78y"
+path="res://.godot/imported/Fireball.jpg-d498b34141eb5ee1a3ad61b70dcbd537.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spells/Lightning.png"
-dest_files=["res://.godot/imported/Lightning.png-44040c73b93114736d9854f49f5bad67.ctex"]
+source_file="res://assets/Spells/Fireball.jpg"
+dest_files=["res://.godot/imported/Fireball.jpg-d498b34141eb5ee1a3ad61b70dcbd537.ctex"]
 
 [params]
 

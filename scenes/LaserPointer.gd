@@ -6,6 +6,8 @@ var saved_target
 signal ignite
 signal time_change
 signal ice_bridge
+signal ice_block
+signal electric
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,7 +52,7 @@ func _process(delta):
 					event.global_position = viewport_coords
 					viewport.push_input(event)
 	else:
-		if(self.visible):
+		if(self.visible and casting_spell == "fizzle"):
 			self.hide()
 		
 func fizzle():
@@ -105,6 +107,7 @@ func _on_right_controller_button_pressed(name):
 		if result["collider"] is StaticBody3D:
 			if saved_target == null:
 				saved_target = result["position"]
+				ice_block.emit(saved_target)
 			else:
 				ice_bridge.emit(saved_target, result["position"])
 				saved_target = null
@@ -112,8 +115,8 @@ func _on_right_controller_button_pressed(name):
 				
 	
 	elif casting_spell == "lightning":
-		if result["collider"] is StaticBody3D:
-			pass
+		if result["collider"] == $"../../../../Castle Wall/Castle Gate/SM_Prop_Water_Tower_01/Area3D":
+			electric.emit()
 		self.fizzle()
 	
 	else:
