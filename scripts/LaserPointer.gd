@@ -45,9 +45,6 @@ func _process(delta):
 		self.scale.z = collision_distance
 		self.position = result["position"].lerp(start_point, 0.5)
 		
-		if building_bridge:
-			bridge.emit(saved_target, result["position"])
-		
 		var menus = get_tree().get_nodes_in_group("spatial_menus")
 		for menu in menus:
 			if result["collider_id"] == menu.get_instance_id():
@@ -130,11 +127,9 @@ func _on_right_controller_button_pressed(name):
 			if saved_target == null:
 				saved_target = result["position"]
 				ice_block.emit(saved_target)
-				building_bridge = true
 			else:
 				ice_bridge.emit(saved_target, result["position"])
 				saved_target = null
-				building_bridge = false
 				self.fizzle()
 				
 	

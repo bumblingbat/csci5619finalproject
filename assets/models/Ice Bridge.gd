@@ -30,7 +30,6 @@ func _on_laser_pointer_ice_block(pos):
 	self.show()
 
 func _on_laser_pointer_bridge(position1, position2):
-	print("test")
 	self._on_laser_pointer_bridge(position1, position2)
 	$StaticBody3D.set_collision_layer_value(1, false)
 	self.show()

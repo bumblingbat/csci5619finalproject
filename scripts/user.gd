@@ -64,7 +64,7 @@ func _process(delta):
 			var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
 			
 			# apply to position
-			self.position += movement_vector
+			self.position -= movement_vector
 
 	# Hand Directed Steering (right)
 	else:
@@ -76,7 +76,7 @@ func _process(delta):
 			var movement_vector = movement_direction.normalized() * self.input_vector.y * max_speed * delta
 			
 			# apply to position
-			self.position += movement_vector
+			self.position -= movement_vector
 
 
 	# Snap turn
