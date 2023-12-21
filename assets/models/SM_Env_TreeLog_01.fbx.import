@@ -32,7 +32,7 @@ _subresources={
 "materials": {
 "blinn1": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/models/poly_city.tres"
+"use_external/path": "res://assets/models/polygon_knight.tres"
 }
 }
 }
