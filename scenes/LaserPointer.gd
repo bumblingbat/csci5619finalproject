@@ -26,13 +26,32 @@ func _process(delta):
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 
 	if !result.is_empty():
-		var collision_distance = result["position"].distance_to(start_point)
-		self.scale.z = collision_distance
-		self.position.z = -collision_distance / 2
 		
+		var menus = get_tree().get_nodes_in_group("spatial_menus")
+		for menu in menus:
+			if result["collider_id"] == menu.get_instance_id():
+				var collision_distance = result["position"].distance_to(start_point)
+				self.scale.z = collision_distance
+				self.position.z = -collision_distance / 2
+				if(!self.visible):
+					self.show()
+				var menu_shape = menu.find_child("CollisionShape3D") as CollisionShape3D
+				var box = menu_shape.shape as BoxShape3D
+
+				var local_collision = menu.global_transform.inverse() * result["position"]
+				var normalized_coords = Vector2(local_collision.x / box.size.x + 0.5, local_collision.z / box.size.z + 0.5)
+				if normalized_coords.x >= .5:
+					normalized_coords.x = (normalized_coords.x - .5) * 2
+					var viewport = menu.get_parent().find_child("RightPageViewport") as SubViewport
+					var viewport_coords = Vector2(viewport.size.x * normalized_coords.x, viewport.size.y * normalized_coords.y)
+					
+					var event = InputEventMouseMotion.new()
+					event.position = viewport_coords
+					event.global_position = viewport_coords
+					viewport.push_input(event)
 	else:
-		self.scale.z = 100
-		self.position.z = -50
+		if(self.visible):
+			self.hide()
 		
 func fizzle():
 	self.casting_spell = "fizzle"
