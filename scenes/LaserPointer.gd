@@ -2,6 +2,7 @@ extends Node3D
 
 var casting_spell := "fizzle"
 var saved_target
+var left_controller := false
 
 signal ignite
 signal time_change
@@ -16,11 +17,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.scale.z = 100
-	self.position.z = -50
+	var node_controller
+	
+	if left_controller:
+		node_controller = %LeftController
+	else:
+		node_controller = %RightController
+	
+	self.global_position = node_controller.global_position
+	self.global_rotation = node_controller.global_rotation
 
-	var start_point = get_parent().global_position
-	var end_point = get_parent().global_transform * Vector3(0, 0, -100)
+	var start_point = node_controller.global_position
+	var end_point = node_controller.global_transform * Vector3(0, 0, -100)
 
 	var query = PhysicsRayQueryParameters3D.create(start_point, end_point)
 	query.collide_with_areas = true
@@ -28,15 +36,16 @@ func _process(delta):
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 
 	if !result.is_empty():
+		if not self.visible:
+			self.show()
+		
+		var collision_distance = result["position"].distance_to(start_point)
+		self.scale.z = collision_distance
+		self.position = result["position"].lerp(start_point, 0.5)
 		
 		var menus = get_tree().get_nodes_in_group("spatial_menus")
 		for menu in menus:
 			if result["collider_id"] == menu.get_instance_id():
-				var collision_distance = result["position"].distance_to(start_point)
-				self.scale.z = collision_distance
-				self.position.z = -collision_distance / 2
-				if(!self.visible):
-					self.show()
 				var menu_shape = menu.find_child("CollisionShape3D") as CollisionShape3D
 				var box = menu_shape.shape as BoxShape3D
 
@@ -52,28 +61,27 @@ func _process(delta):
 					event.global_position = viewport_coords
 					viewport.push_input(event)
 	else:
-		if(self.visible and casting_spell == "fizzle"):
-			self.hide()
+		self.hide()
 		
 func fizzle():
 	self.casting_spell = "fizzle"
 	self.saved_target = null
-	$"../RightHand".hand_material_override.albedo_color = Color(0, 0, 0)
+	$"../XRUser/XROrigin3D/RightController/RightHand".hand_material_override.albedo_color = Color(0, 0, 0)
 
 func _on_casting_fire():
-	$"../RightHand".hand_material_override.albedo_color = Color(207.0/255.0, 25.0/255.0, 32.0/255.0)
+	$"../XRUser/XROrigin3D/RightController/RightHand".hand_material_override.albedo_color = Color(207.0/255.0, 25.0/255.0, 32.0/255.0)
 	casting_spell = "fire"
 
 func _on_casting_ice():
-	$"../RightHand".hand_material_override.albedo_color = Color(165.0/255.0, 242.0/255.0, 243.0/255.0)
+	$"../XRUser/XROrigin3D/RightController/RightHand".hand_material_override.albedo_color = Color(165.0/255.0, 242.0/255.0, 243.0/255.0)
 	casting_spell = "ice"
 
 func _on_casting_lightning():
-	$"../RightHand".hand_material_override.albedo_color = Color(120.0/255.0, 37.0/255.0, 164.0/255.0)
+	$"../XRUser/XROrigin3D/RightController/RightHand".hand_material_override.albedo_color = Color(120.0/255.0, 37.0/255.0, 164.0/255.0)
 	casting_spell = "lightning"
 
 func _on_casting_time_stop():
-	$"../RightHand".hand_material_override.albedo_color = Color(242.0/255.0, 209.0/255.0, 107.0/255.0)
+	$"../XRUser/XROrigin3D/RightController/RightHand".hand_material_override.albedo_color = Color(242.0/255.0, 209.0/255.0, 107.0/255.0)
 	casting_spell = "time stop"
 
 
@@ -87,8 +95,15 @@ func _on_right_controller_button_pressed(name):
 		time_change.emit()
 		self.fizzle()
 		
-	var start_point = get_parent().global_position
-	var end_point = get_parent().global_transform * Vector3(0, 0, -100)
+	var node_controller
+	
+	if left_controller:
+		node_controller = %LeftController
+	else:
+		node_controller = %RightController
+		
+	var start_point = node_controller.global_position
+	var end_point = node_controller.global_transform * Vector3(0, 0, -100)
 
 	var query = PhysicsRayQueryParameters3D.create(start_point, end_point)
 	query.collide_with_areas = true
@@ -99,7 +114,7 @@ func _on_right_controller_button_pressed(name):
 		return
 	
 	if casting_spell == "fire":
-		if result["collider"] == $"../../../../Hedge Gate/Gate/brazier1" or result["collider"] == $"../../../../Hedge Gate/Gate/brazier2":
+		if result["collider"] == $"../Hedge Gate/Gate/brazier1" or result["collider"] == $"../Hedge Gate/Gate/brazier2":
 			ignite.emit(result["collider"].find_child("FlameMesh"))
 		self.fizzle()
 	
@@ -115,7 +130,7 @@ func _on_right_controller_button_pressed(name):
 				
 	
 	elif casting_spell == "lightning":
-		if result["collider"] == $"../../../../Castle Wall/Castle Gate/SM_Prop_Water_Tower_01/Area3D":
+		if result["collider"] == $"../Castle Wall/Castle Gate/SM_Prop_Water_Tower_01/Area3D":
 			electric.emit()
 		self.fizzle()
 	

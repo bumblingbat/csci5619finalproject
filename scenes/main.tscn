@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=124 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_xecma"]
 [ext_resource type="Script" path="res://scenes/XRUserNew.gd" id="2_5ghs3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://lfrdf02j5eec" path="res://assets/Hex_Grid.jpg" id="5_htbn6"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_l67yh"]
 [ext_resource type="Texture2D" uid="uid://dnke30thwq78y" path="res://assets/Spells/Fireball.jpg" id="5_p2le2"]
+[ext_resource type="Texture2D" uid="uid://bjsywvp7jk2h6" path="res://assets/Spells/Keybinds.png" id="5_qxxeu"]
 [ext_resource type="Texture2D" uid="uid://btl3vm04cl6hf" path="res://assets/Spells/Ice Bridge.jpg" id="6_r8ay3"]
 [ext_resource type="PackedScene" uid="uid://cr5h0jcxhoyry" path="res://assets/models/SM_Bld_Castle_Iron_Gate_01.fbx" id="6_su8nq"]
 [ext_resource type="Texture2D" uid="uid://b2u74d8kugqkq" path="res://assets/Spells/Lightning.jpg" id="7_8twmx"]
@@ -74,6 +75,7 @@ viewport_path = NodePath("XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPag
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwi8p"]
 resource_local_to_scene = true
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_pgwth")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qw1tg"]
@@ -416,6 +418,10 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport"]
 script = ExtResource("4_rq42a")
 
+[node name="Keybinds" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
+position = Vector2(450, 600)
+texture = ExtResource("5_qxxeu")
+
 [node name="Fireball" type="Sprite2D" parent="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer"]
 position = Vector2(450, 600)
 texture = ExtResource("5_p2le2")
@@ -541,13 +547,14 @@ hand_material_override = SubResource("StandardMaterial3D_pywdl")
 [node name="MovementTurn" parent="XRUser/XROrigin3D/RightController" instance=ExtResource("5_7y1nr")]
 turn_mode = 0
 
-[node name="LaserPointer" type="MeshInstance3D" parent="XRUser/XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+[node name="PlayerBody" parent="XRUser/XROrigin3D" instance=ExtResource("5_l67yh")]
+
+[node name="LaserPointer" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 1.2, 1.5)
 material_override = SubResource("StandardMaterial3D_k0m35")
 mesh = SubResource("BoxMesh_84hmm")
+skeleton = NodePath("../XRUser/XROrigin3D/RightController")
 script = ExtResource("14_yxygf")
-
-[node name="PlayerBody" parent="XRUser/XROrigin3D" instance=ExtResource("5_l67yh")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")
@@ -1850,21 +1857,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_e58ar")
 
 [connection signal="input_vector2_changed" from="XRUser/XROrigin3D/LeftController" to="XRUser/XROrigin3D/LeftController/Book/LeftSide/LeftPage/SpellListViewport/CanvasLayer" method="_on_change_spell"]
-[connection signal="fire" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_fire"]
-[connection signal="ice" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_ice"]
-[connection signal="lightning" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_lightning"]
-[connection signal="time_stop" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_casting_time_stop"]
+[connection signal="fire" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="LaserPointer" method="_on_casting_fire"]
+[connection signal="ice" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="LaserPointer" method="_on_casting_ice"]
+[connection signal="lightning" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="LaserPointer" method="_on_casting_lightning"]
+[connection signal="time_stop" from="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" to="LaserPointer" method="_on_casting_time_stop"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_pressed"]
-[connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/RightController/LaserPointer" method="_on_right_controller_button_pressed"]
+[connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="LaserPointer" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_released"]
-[connection signal="electric" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
-[connection signal="ice_bridge" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
-[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
-[connection signal="ignite" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Hedge Gate/Gate/brazier2/FlameMesh" method="_on_laser_pointer_ignite"]
-[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" method="_on_time_change"]
-[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
-[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
-[connection signal="time_change" from="XRUser/XROrigin3D/RightController/LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
+[connection signal="electric" from="LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
+[connection signal="ice_bridge" from="LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
+[connection signal="ignite" from="LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
+[connection signal="ignite" from="LaserPointer" to="Hedge Gate/Gate/brazier2/FlameMesh" method="_on_laser_pointer_ignite"]
+[connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_01" method="_on_time_change"]
+[connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
+[connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
+[connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
 [connection signal="the_beacons_are_lit" from="Hedge Gate/Gate/brazier1/FlameMesh" to="Hedge Gate/Gate/Door/SM_Bld_Castle_Iron_Gate_01" method="_on_the_beacons_are_lit"]
