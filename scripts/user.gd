@@ -104,10 +104,12 @@ func _process(delta):
 
 			# reverse the translation to move back to the original position
 			self.translate($XRCamera3D.position * -1)
+#
+#func process_input(input_name: String, input_value: Vector2):
+#	if input_name == "primary":
+#		input_vector = input_value
+		
 
-func process_input(input_name: String, input_value: Vector2):
-	if input_name == "primary":
-		input_vector = input_value
 
 func reset_position():
 	self.position.x = 0.0
@@ -146,3 +148,13 @@ func _on_win_area_win():
 	#TODO win notification
 
 
+
+
+func _on_left_controller_input_vector_2_changed(name, value):
+	if name == "primary" and left:
+		input_vector = value
+
+
+func _on_right_controller_input_vector_2_changed(name, value):
+	if name == "primary" and (not left):
+		input_vector = value

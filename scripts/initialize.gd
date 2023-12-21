@@ -15,4 +15,3 @@ func _ready():
 	else:
 		print("OpenXR not initialized. Please check if your headset is connected.")
 
-
