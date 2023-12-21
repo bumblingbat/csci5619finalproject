@@ -556,11 +556,9 @@ turn_mode = 0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 1.2, 1.5)
 material_override = SubResource("StandardMaterial3D_k0m35")
 mesh = SubResource("BoxMesh_84hmm")
-<<<<<<< HEAD
+
 skeleton = NodePath("../XRUser/XROrigin3D/RightController")
 script = ExtResource("14_yxygf")
-=======
->>>>>>> 8f9b4aa9122b8d392d13fcd23c707eab1e575f1c
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")
@@ -1882,7 +1880,6 @@ shape = SubResource("BoxShape3D_e58ar")
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_pressed"]
 [connection signal="button_pressed" from="XRUser/XROrigin3D/RightController" to="LaserPointer" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XRUser/XROrigin3D/RightController" to="XRUser/XROrigin3D/LeftController/Book/RightSide/RightPage/RightPageViewport" method="_on_trigger_released"]
-<<<<<<< HEAD
 [connection signal="electric" from="LaserPointer" to="Castle Wall/Castle Gate/Castle Door" method="_on_laser_pointer_electric"]
 [connection signal="ice_bridge" from="LaserPointer" to="Ice Bridge" method="_on_laser_pointer_ice_bridge"]
 [connection signal="ignite" from="LaserPointer" to="Hedge Gate/Gate/brazier1/FlameMesh" method="_on_laser_pointer_ignite"]
@@ -1891,8 +1888,6 @@ shape = SubResource("BoxShape3D_e58ar")
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_02" method="_on_time_change"]
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_03" method="_on_time_change"]
 [connection signal="time_change" from="LaserPointer" to="Bean3D Like Never Seen Before/SM_Bean_Cowboy_04" method="_on_time_change"]
-=======
->>>>>>> 8f9b4aa9122b8d392d13fcd23c707eab1e575f1c
 [connection signal="area_entered" from="Moat/MoatArea" to="Moat/MoatArea" method="_on_area_entered"]
 [connection signal="reset" from="Moat/MoatArea" to="XRUser" method="_on_reset"]
 [connection signal="the_beacons_are_lit" from="Hedge Gate/Gate/brazier1/FlameMesh" to="Hedge Gate/Gate/Door/SM_Bld_Castle_Iron_Gate_01" method="_on_the_beacons_are_lit"]
