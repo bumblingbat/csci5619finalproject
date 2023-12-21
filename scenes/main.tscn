@@ -558,7 +558,7 @@ material_override = SubResource("StandardMaterial3D_k0m35")
 mesh = SubResource("BoxMesh_84hmm")
 
 skeleton = NodePath("../XRUser/XROrigin3D/RightController")
-script = ExtResource("14_yxygf")
+script = ExtResource("15_0pm4t")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pi0m0")
