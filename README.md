@@ -9,11 +9,11 @@ In our game, you play as a wizard thief who wants to infiltrate the cowboy beans
 - Time stop (yellow): choose an object to freeze the movement of
 
 ## Controls
-- Left joystick to flip pages
-- Right joystick to move
-- Right trigger to draw and cast spells
-- AX button to swap turning method between snap and continuous 
-- BY button to swap steering method between view and hand controlled 
+- Left joystick: flip pages in spellbook
+- Right joystick: walk
+- Right trigger: draw and cast spells
+- AX button: swap turning method between snap and continuous
+- BY button: swap steering method between view and hand controlled
 
 ## Third-Party Assets
 - Polygon Adventure
